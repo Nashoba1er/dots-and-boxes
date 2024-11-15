@@ -176,7 +176,7 @@ def algo1(clignote,plateau,couleur_bot):
     # pour_y_voir_plus_clair(plateau)
     display.flip()
 
-def algo2(clignone,plateau,couleur_bot):
+def algo2(clignote,plateau,couleur_bot):
     # pour_y_voir_plus_clair(plateau)
     #peut-on prendre un point ?")
     arete_gagnante = aretes_gagnantes(plateau)
