@@ -27,6 +27,8 @@ from time import *
 from random import *
 from algos import *
 
+# Désactiver le mixer audio
+mixer.quit()
 
 init()
 
