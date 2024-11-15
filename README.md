@@ -25,9 +25,14 @@ Avant de pouvoir exécuter ce projet, vous devez avoir installé :
    ```bash
    poetry run python dots_and_boxes/main.py
 
+## Packaging
+Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et .whl). Pour cela, exécutez la commande suivante :
+   ```bash
+   poetry build
+   ```
 ## Structure du projet
-.
-├── README.md                      # Ce fichier
+```bash
+├── README.md                       # Ce fichier
 ├── dist                            # Dossier contenant les fichiers de distribution
 │   ├── dots_and_boxes-1.0.0-py3-none-any.whl
 │   └── dots_and_boxes-1.0.0.tar.gz
@@ -39,8 +44,9 @@ Avant de pouvoir exécuter ce projet, vous devez avoir installé :
 │   └── main.py
 ├── pyproject.toml                 # Configuration du projet (Poetry)
 ├── poetry.lock                    # Verrouillage des dépendances
-└── tests                           # Tests du projet
+└── tests                          # Tests du projet
     └── test_algos.py
+```
 
 ## Fichier `pyproject.toml
 Le fichier pyproject.toml est utilisé pour gérer les dépendances et les métadonnées du projet. 
