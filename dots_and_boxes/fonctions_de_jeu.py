@@ -7,7 +7,7 @@ Sommaire des fonctions pour les algos :
     - prochaine_arete(o,x,y,Chaine)
     - longueur_chaine(coordo,Chaine)
     - random_arete_dispo(plateau)
-    - colorie_chaine(coordo,Chaine,couleur_bot)
+    - colorie_chaine(clignote,coordo,Chaine,couleur_bot)
     - bool_phase_finale(plateau)
     - fin_phase_finale(plateau) 
     - nb_arete_chaine(coordo,Chaine)
@@ -20,9 +20,9 @@ Sommaire des fonctions pour les algos :
     - aretes_gagnantes(plateau) 
     - arete_sure(chaine)
     - fonctions de la double case 
-        . tue_cycle(plateau,couleur_bot)
-        . que_next1_next2(plateau, couleur_bot)
-        . regle_double_case(plateau,couleur_bot)
+        . tue_cycle(clignote,plateau,couleur_bot)
+        . que_next1_next2(clignote,plateau, couleur_bot)
+        . regle_double_case(clignote,plateau,couleur_bot)
     - coupe_chaine_2(plateau)
     - complète_chaine(coordo,Chaine)
     - arete_sure_existence(plateau)
@@ -291,7 +291,7 @@ def random_arete_dispo(plateau):
     return (-1,0,0)
     
 
-def colorie_chaine(coordo,Chaine,couleur_bot):
+def colorie_chaine(clignote,coordo,Chaine,couleur_bot):
     """
     entrée : une arête sous forme (o,x,y), un plateau sous forme [H,V,C], une couleur
     effet : colorie entièrement (sur l'écran) la chaine fermée par l'arête (o,x,y), et modifie le plateau en conséquence
@@ -308,7 +308,7 @@ def colorie_chaine(coordo,Chaine,couleur_bot):
                 # print(coordo_next)
                 if coordo_next != False :
                     # pour_y_voir_plus_clair(Chaine)    
-                    colorie_chaine(coordo_next,Chaine,couleur_bot)                
+                    colorie_chaine(clignote,coordo_next,Chaine,couleur_bot)                
             else :
                 Chaine[2][x][y] = 1
                 # pour_y_voir_plus_clair(Chaine)
@@ -651,7 +651,7 @@ def arete_sure(chaine):
                 return(1,i,j)
     return False
 
-def tue_cycle(plateau,couleur_bot):
+def tue_cycle(clignote,plateau,couleur_bot):
     """
     entrée : un plateau sous forme [H,V,C], une couleur 'couleur_bot'
     effet : trouve et trace une arête qui gagne un point dans un cycle de longueur < 4
@@ -720,7 +720,7 @@ def tue_cycle(plateau,couleur_bot):
     else :
         return True
 
-def que_next1_next2(plateau, couleur_bot):
+def que_next1_next2(clignote,plateau, couleur_bot):
     """
     entrée : un plateau sous forme [H,V,C], une couleur 'couleur_bot' \n
     effet : trouve 2 arêtes gagnantes, et trace toutes les autres gagnantes \n
@@ -854,7 +854,7 @@ def que_next1_next2(plateau, couleur_bot):
     else :
         return (False,[-1,-1,-1],[-1,-1,-1])
     
-def regle_double_case(plateau,couleur_bot):
+def regle_double_case(clignote,plateau,couleur_bot):
     """
     entrée : un plateau sous forme [H,V,C], une couleur 'c' \n
     effet : trace les arêtes qui respectent la règle de la double case en prenant en compte le cas des cycles, et modifie le plateau en conséquence \n
@@ -863,11 +863,11 @@ def regle_double_case(plateau,couleur_bot):
     peut_jouer = True    
     dimension = dim(plateau)
     #on commence par éliminer les cycles de longueur < 4 : on ne peut pas appliquer la règle sur eux
-    peut_jouer = not tue_cycle(plateau,couleur_bot)
+    peut_jouer = not tue_cycle(clignote,plateau,couleur_bot)
     
     #on part à la recherche des arêtes gagnantes. on fait en sorte d'en garder que 2.
     #si on trouve d'autres arêtes gagnantes que next_arete1 et next_arete2, on trace celles-ci
-    (peut_jouer,next_arete1,next_arete2) = que_next1_next2(plateau, couleur_bot)
+    (peut_jouer,next_arete1,next_arete2) = que_next1_next2(clignote,plateau, couleur_bot)
 
     if peut_jouer : #règle de la double case
         if next_arete1 != [-1,-1,-1]: # si on a trouvé une arête qui nous fait gagner un point
@@ -910,11 +910,11 @@ def regle_double_case(plateau,couleur_bot):
                 elif peut_jouer : #on est pas dans le cas d'un cycle : on colorie la chaine la plus grande
                     if long1 > long2 :
                         next_arete = next_arete1
-                        colorie_chaine([(next_arete2[0],next_arete2[1],next_arete2[2])],plateau,couleur_bot)
+                        colorie_chaine(clignote,[(next_arete2[0],next_arete2[1],next_arete2[2])],plateau,couleur_bot)
                     
                     else :
                         next_arete = next_arete2
-                        colorie_chaine([(next_arete1[0],next_arete1[1],next_arete1[2])],plateau,couleur_bot)
+                        colorie_chaine(clignote,[(next_arete1[0],next_arete1[1],next_arete1[2])],plateau,couleur_bot)
 
                 
             if peut_jouer : #il ne reste plus qu'une arête gagnante, on a réglé son compte à l'autre
@@ -1140,4 +1140,4 @@ def sprague_grundy(clignote,plateau,c):
                 plateau[o][x][y] = 1
                 sprague_grundy(clignote,plateau,c)
             else : #si il vaut 0 :
-                regle_double_case(plateau,c)
+                regle_double_case(clignote,plateau,c)

@@ -277,9 +277,9 @@ def algo3(clignote,plateau,couleur_bot):
                     # ce n'est pas un piège")
                     plateau[oo][ii][jj] = 0
                     #on fait la règle de la double case :")
-                    regle_double_case(plateau,couleur_bot)
+                    regle_double_case(clignote,plateau,couleur_bot)
                     while carre(plateau,couleur_bot):
-                        regle_double_case(plateau,couleur_bot)
+                        regle_double_case(clignote,plateau,couleur_bot)
             else : 
                 #NON, on est pas en phase finale")
                 #on prend l'arete gagnante")
@@ -360,9 +360,9 @@ def algo4(clignote,plateau,c):
                     # ce n'est pas un piège")
                     plateau[oo][ii][jj] = 0
                     #on fait la règle de la double case :")
-                    regle_double_case(plateau,c)
+                    regle_double_case(clignote,plateau,c)
                     while carre(plateau,c):
-                        regle_double_case(plateau,c)
+                        regle_double_case(clignote,plateau,c)
             else : 
                 #NON, on est pas en phase finale")
                 #sommes-nous dans le cas de sprague-grundy ?")
