@@ -28,7 +28,7 @@ Sommaire des fonctions pour les algos :
     - arete_sure_existence(plateau)
     - test_grundy(plateau)
     - nombre_grundy(plateau)
-    - sprague_grundy(plateau,c)
+    - sprague_grundy(clignote,plateau,c)
     - fonctions du minmax 
         . coups_possibles(etat)
         . execute_coup(coup, etat)
@@ -1047,7 +1047,7 @@ def nombre_grundy(plateau):
             # pour_y_voir_plus_clair(chaine)
     return nb_grundy%2
             
-def sprague_grundy(plateau,c):
+def sprague_grundy(clignote,plateau,c):
     """
     entrée : un plateau sous forme [H,V,C], une couleur c
     effet : effectue un tour de jeu de l'algo 5, dans le cas où on peut appliquer le théorème de sprague-grundy
@@ -1126,7 +1126,7 @@ def sprague_grundy(plateau,c):
             draw_arete(clignote,plateau,o,x,y,couleur_bot)
             plateau[o][x][y] = 1
             carre(plateau,c)
-            sprague_grundy(plateau,c)
+            sprague_grundy(clignote,plateau,c)
         else :#OUI elle est de longueur 2 ! 
             #on calcule le nb de grundy
             nb_grundy = nombre_grundy(plateau)
@@ -1138,6 +1138,6 @@ def sprague_grundy(plateau,c):
                     sleep(delay)
                 draw_arete(clignote,plateau,o,x,y,couleur_bot)
                 plateau[o][x][y] = 1
-                sprague_grundy(plateau,c)
+                sprague_grundy(clignote,plateau,c)
             else : #si il vaut 0 :
                 regle_double_case(plateau,c)

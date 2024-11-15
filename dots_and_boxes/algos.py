@@ -310,7 +310,7 @@ def algo4(clignote,plateau,c):
             if test_grundy(plateau) == True :
                 #-> sprague grundy
                 #au tour de grundy !")
-                sprague_grundy(plateau,c)
+                sprague_grundy(clignote,plateau,c)
             else : 
                 #on prend l'arête qui minimise les points donnés à l'adversaire")
                 best_arrete = trouve_meilleure_arête(plateau)
@@ -369,7 +369,7 @@ def algo4(clignote,plateau,c):
                 if test_grundy(plateau) == True :
                     #-> sprague grundy
                     #au tour de grundy !")
-                    sprague_grundy(plateau,c)
+                    sprague_grundy(clignote,plateau,c)
                 else : 
                     #on est pas dans un cas de jeu de Nim")
                     #on prend l'arete gagnante")
