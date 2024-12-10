@@ -1,4 +1,4 @@
-''' 
+'''
 Sommaire des fonctions d'affichage :
     - définition des couleurs
     - définition de l'écran

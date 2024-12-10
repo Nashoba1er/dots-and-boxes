@@ -36,6 +36,16 @@ Avant de pouvoir exécuter ce projet, vous devez avoir installé :
 - **Python 3.11** ou une version compatible
 - **Poetry** (gestionnaire de dépendances Python)
 
+## Static Code Analysis
+Nous utilisons `Flake8` pour l'analyse statique du code et s'assurer de sa qualité.
+
+### Comment installer et lancer les analyses.
+
+1. Installer les dépendances:
+   ```bash
+   pip install -r requirements.txt
+
+
 
 ## Installation et Execution
 1. Clonez ce dépôt :
