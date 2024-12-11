@@ -261,3 +261,7 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE](https://github.com/Na
 
 Projet réalisé par Antoine Dumont
 
+### Realise
+
+Voici le lien vers la release que j'ai créée sur GitHub : [Release v1.0.0.](https://github.com/Nashoba1er/dots-and-boxes/releases/tag/v1.0.0)
+
