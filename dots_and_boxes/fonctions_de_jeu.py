@@ -1,6 +1,5 @@
 '''
 Sommaire des fonctions pour les algos :
-    - dim(plateau)
     - pour_y_voir_plus_clair(array)
     - carre(plateau, c)
     - test_danger(plateau, o, x, y)
@@ -42,7 +41,7 @@ Sommaire des fonctions pour les algos :
 from random import randint
 from time import sleep
 from copy import deepcopy
-from affichage import dim, draw_carre, draw_arete
+from .affichage import dim, draw_carre, draw_arete
 
 time_activation = False
 delay = 0.2
