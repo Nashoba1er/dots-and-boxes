@@ -10,6 +10,8 @@ Ce fichier README contient une présentation complète du projet **Dots and Boxe
 - L'analyse statique du code avec Flake8 et pre-commit.
 - Le système de logging du projet.
 - Les tests unitaires mis en place.
+- la façon dont le code est documenté
+- la licence
 
 Tout ce qui est nécessaire pour comprendre, installer et utiliser le projet y est détaillé.
 
