@@ -72,7 +72,7 @@ Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et
     └── test_algos.py
 ```
 
-## Fichier `pyproject.toml
+## Fichier `pyproject.toml`
 Le fichier pyproject.toml est utilisé pour gérer les dépendances et les métadonnées du projet. 
 
 ## Analyse statique du code
@@ -82,7 +82,7 @@ L’analyse statique du code est réalisée à l’aide de l’outil Flake8, qui
 
 ### Configuration
 
-Le fichier **.flake8** est situé à la racine du projet et contient la configuration suivante :
+Le fichier `.flake8` est situé à la racine du projet et contient la configuration suivante :
 ```bash
 [flake8]
 max-line-length = 88
@@ -114,7 +114,7 @@ L’analyse statique est automatisée grâce à un hook pre-commit qui utilise F
 
 ### Configuration
 
-Le fichier **.pre-commit-config.yaml** configure le hook pour exécuter Flake8 :
+Le fichier `.pre-commit-config.yaml` configure le hook pour exécuter Flake8 :
 ```bash
 repos:
   - repo: https://github.com/pycqa/flake8
@@ -156,31 +156,7 @@ Un fichier `logger.py` a été créé pour centraliser la configuration du logge
 - **ERROR** : pour des erreurs qui ne bloquent pas le programme.
 - **CRITICAL** : pour des erreurs graves qui peuvent empêcher l'exécution du jeu.
 
-Voici un extrait de la configuration du logger dans le fichier `logger.py` :
-
-```python
-# dots_and_boxes/logger.py
-import logging
-
-def setup_logger():
-    logger = logging.getLogger('dots_and_boxes')
-    logger.setLevel(logging.DEBUG)
-
-    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    formatter = logging.Formatter(log_format)
-
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(formatter)
-
-    file_handler = logging.FileHandler('game.log')
-    file_handler.setFormatter(formatter)
-
-    logger.addHandler(console_handler)
-    logger.addHandler(file_handler)
-
-    return logger
-
-logger = setup_logger()
+la configuration du logger est dans le fichier `logger.py` : https://github.com/Nashoba1er/dots-and-boxes/blob/main/dots_and_boxes/logger.py
 
 
 ## Auteurs et Licence 
