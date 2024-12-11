@@ -75,7 +75,7 @@ Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et
 ├── Makefile
 ├── README.md
 ├── build
-│   ├── _sources
+│   ├── _docs
 │   │   └── index.rst.txt
 │   ├── genindex.html
 │   ├── index.html
