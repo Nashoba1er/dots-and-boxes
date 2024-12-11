@@ -108,6 +108,38 @@ flake8
 ```
 Cette commande vérifie tous les fichiers Python du projet. Si des erreurs sont détectées, elles seront affichées dans le terminal avec les informations nécessaires pour les corriger.
 
+## Automatisation de l’analyse statique avec pre-commit
+L’analyse statique est automatisée grâce à un hook pre-commit qui utilise Flake8. Ce hook vérifie automatiquement le code avant chaque commit pour s’assurer qu’il respecte les normes PEP 8.
+
+### Configuration
+
+Le fichier **.pre-commit-config.yaml** configure le hook pour exécuter Flake8 :
+```bash
+repos:
+  - repo: https://github.com/pycqa/flake8
+    rev: v6.0.0
+    hooks:
+      - id: flake8
+```
+
+Lien vers la configuration : https://github.com/username/dots-and-boxes/blob/main/.pre-commit-config.yaml
+
+### Installation
+
+1. Installez **pre-commit** :
+```bash
+pip install pre-commit
+```
+2. Installez les hooks dans le dépôt :
+```bash
+pre-commit install
+```
+3. Testez la configuration en effectuant un commit :
+```bash
+git add .
+git commit -m "Test commit"
+
+```
 
 ## Auteurs et Licence 
 Antoine Dumont
