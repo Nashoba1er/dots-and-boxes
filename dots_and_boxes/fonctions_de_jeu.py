@@ -102,7 +102,7 @@ def carre(plateau, c):
     entrée :le plateau sous forme [H, V, C], une couleur 'c'
     effet :colorie en 'c' les carrés pouvant être coloriés
     (ceux non coloriés et entourés de 4 arêtes)
-            modifie le plateau en conséquence
+    modifie le plateau en conséquence
     sortie :renvoie true s'il a effectué un coloriage et false sinon
     """
     dimension = dim(plateau)
@@ -1153,10 +1153,10 @@ def coupe_chaine_2(plateau):
     """
     entrée :un plateau sous forme [H, V, C]
     effet :
-        Si parmis les arêtes disponibles,
-        une ferme une chaine de longueur exactement 2 en la coupant en 2,
-        on renvoie celle-ci \n
-        Sinon on renvoie l'arête qui ferme la plus petite chaine
+    Si parmis les arêtes disponibles,
+    une ferme une chaine de longueur exactement 2 en la coupant en 2,
+    on renvoie celle-ci \n
+    Sinon on renvoie l'arête qui ferme la plus petite chaine
     sortie :une arête sous forme (o, x, y)
     """
     liste_arete_en_jeu = trouves_les_meilleurs_arêtes(plateau)
@@ -1280,29 +1280,29 @@ def sprague_grundy(clignote, plateau, c):
     sortie :()
 
     explication aglo reposant sur sprague grundy :
-        si on ne peut pas prendre de point :
-            on calcule le nombre de grundy sur ce plateau :
-                s'il vaut 1 :le joueur qui doit jouer gagne (ici nous) :
-                    combien la longueur de la chaine minimale vaut-elle ?
-                        si elle vaut 1 :
-                        on prend l'arête correspondante
-                        si elle vaut 2 :
-                        on prend une arête qui coupe en 2 une chaine de 2
-                s'il vaut 0 :le joueur qui doit jouer perd (ici nous) :
-                    on prend une arête d'une chaine de longueur 1,
-                    en espérant que le joueur adverse ouvre une chaine de 2
-                    sans la couper en 2
-         si on peut prendre un point :
-             si la chaine ouverte est de longueur 1, on a pas de choix:
-                on prend ce point et on relance l'algo
-                sur le plateau modifié en conséquence
-             sinon la chaine ouverte est de longueur 2,
-             on a le choix de prendre un point où de le laisser à l'adversaire:
-                on calcule le nombre de grundy si les 2 cases sont prises :
-                    s'il vaut 1 :ie le joueur qui doit jouer gagne :
-                        on prend les deux arêtes. tip :prendre l'arête gagnante.
-                    sinon s'il vaut 0 :le joueur qui doit jouer perd :
-                        on prend l'arête de la règle de la double case.
+        - si on ne peut pas prendre de point :
+            - on calcule le nombre de grundy sur ce plateau :
+                - s'il vaut 1 :le joueur qui doit jouer gagne (ici nous) :
+                    - combien la longueur de la chaine minimale vaut-elle ?
+                        - si elle vaut 1 :
+                        - on prend l'arête correspondante
+                         -si elle vaut 2 :
+                         -on prend une arête qui coupe en 2 une chaine de 2
+                - s'il vaut 0 :le joueur qui doit jouer perd (ici nous) :
+                    - on prend une arête d'une chaine de longueur 1,
+                    - en espérant que le joueur adverse ouvre une chaine de 2
+                    - sans la couper en 2
+        - si on peut prendre un point :
+            - si la chaine ouverte est de longueur 1, on a pas de choix:
+                - on prend ce point et on relance l'algo
+                - sur le plateau modifié en conséquence
+            - sinon la chaine ouverte est de longueur 2,
+            - on a le choix de prendre un point où de le laisser à l'adversaire:
+                - on calcule le nombre de grundy si les 2 cases sont prises :
+                    - s'il vaut 1 :ie le joueur qui doit jouer gagne :
+                        - on prend les deux arêtes. tip :prendre l'arête gagnante.
+                    - sinon s'il vaut 0 :le joueur qui doit jouer perd :
+                        - on prend l'arête de la règle de la double case.
     """
     couleur_bot = c
     arete_gagnante = aretes_gagnantes(plateau)

@@ -281,333 +281,340 @@ def clic_arete(plateau, coord, bouton):
     display.flip()
 
 
-# couleur de base :
-color_fond = C1_BLUE
-color_1 = bgColor  # couleur du J1
-color_2 = BLEU_FONCE  # couleur du J2
+if __name__ == "__main__":
 
-display.set_caption('Modélisation affrontement candidats')
+    # couleur de base :
+    color_fond = C1_BLUE
+    color_1 = bgColor  # couleur du J1
+    color_2 = BLEU_FONCE  # couleur du J2
 
-display.update()
+    display.set_caption('Modélisation affrontement candidats')
 
-initialise_menu(screen, color_fond)
+    display.update()
 
-# variables globales
-run = True
-joue = False
-pvp = False
-pvr = False
-rvr = False
-robot_activation = False
-dimension = [0, 0]
-nb_colonne = dimension[0] - 1
-nb_ligne = dimension[1] - 1
-choix_x = 0
-choix_y = 0
-mode_pvp = False
-mode_pvr = False
-mode_rvr = False
-menu_color = False
-num_robot1, num_robot2 = -1, -1
-choix_color_fond, choix_color_1, choix_color_2 = -1, -1, -1
-pause = False
-tour_num = 0
-clignote = False
+    initialise_menu(screen, color_fond)
 
-if not run:
-    error("Impossible de lancer le jeu")
+    # variables globales
+    run = True
+    joue = False
+    pvp = False
+    pvr = False
+    rvr = False
+    robot_activation = False
+    dimension = [0, 0]
+    nb_colonne = dimension[0] - 1
+    nb_ligne = dimension[1] - 1
+    choix_x = 0
+    choix_y = 0
+    mode_pvp = False
+    mode_pvr = False
+    mode_rvr = False
+    menu_color = False
+    num_robot1, num_robot2 = -1, -1
+    choix_color_fond, choix_color_1, choix_color_2 = -1, -1, -1
+    pause = False
+    tour_num = 0
+    clignote = False
 
-info("Début de l'exécution de la boucle de jeu")
-while run:
-    # boucle de menu :
-    for pyEvent in event.get():
-        if pyEvent.type == MOUSEMOTION:
-            bouton_main_menu(screen, pyEvent.pos, color_fond)
-        if pyEvent.type == MOUSEBUTTONDOWN:
-            choix = clic_bouton(pyEvent.pos)
-            if choix != 0 :
-                if choix == 1:
-                    pvp = True
-                    dimension_menu(screen, color_fond)
-                elif choix == 2 :
-                    pvr = True
-                    clignote = True
-                    menu_robot(screen, color_2, color_fond)
-                elif choix == 3 :
-                    rvr = True
-                    menu_robots_battle(screen, color_1, color_2, color_fond)
-                elif choix == 4:
-                    menu_color = True
-                    menu_couleur(screen, color_fond)
-        if pyEvent.type == QUIT:
-            run = False
-            joue = False
+    if not run:
+        error("Impossible de lancer le jeu")
 
-    # boucles de choix :
-    debug("Début de l'exécution de la boucle de choix")
-    while pvp :
+    info("Début de l'exécution de la boucle de jeu")
+    while run:
+        # boucle de menu :
         for pyEvent in event.get():
+            if pyEvent.type == MOUSEMOTION:
+                bouton_main_menu(screen, pyEvent.pos, color_fond)
+            if pyEvent.type == MOUSEBUTTONDOWN:
+                choix = clic_bouton(pyEvent.pos)
+                if choix != 0 :
+                    if choix == 1:
+                        pvp = True
+                        dimension_menu(screen, color_fond)
+                    elif choix == 2 :
+                        pvr = True
+                        clignote = True
+                        menu_robot(screen, color_2, color_fond)
+                    elif choix == 3 :
+                        rvr = True
+                        menu_robots_battle(screen, color_1, color_2, color_fond)
+                    elif choix == 4:
+                        menu_color = True
+                        menu_couleur(screen, color_fond)
             if pyEvent.type == QUIT:
-                pvp = False
                 run = False
                 joue = False
-            if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                initialise_menu(screen, color_fond)
-                pvp = False
-            if pyEvent.type == MOUSEMOTION:
-                bouton_dimension_menu(screen, pyEvent.pos, choix_x, choix_y,
-                                      color_fond)
-            if pyEvent.type == MOUSEBUTTONDOWN:
-                (choix_x, choix_y) = clic_bouton_dimension(pyEvent.pos, choix_x,
-                                                           choix_y)
-                if choix_x != 0 and choix_y != 0 :
+
+        # boucles de choix :
+        debug("Début de l'exécution de la boucle de choix")
+        while pvp :
+            for pyEvent in event.get():
+                if pyEvent.type == QUIT:
                     pvp = False
-                    plateau = reset(color_fond, choix_x + 1, choix_y + 1)
-                    dimension = [choix_x + 1, choix_y + 1]
-                    choix_x, choix_y = 0, 0
-                    joue = True
-                    mode_pvp = True
-        display.flip()
+                    run = False
+                    joue = False
+                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                    initialise_menu(screen, color_fond)
+                    pvp = False
+                if pyEvent.type == MOUSEMOTION:
+                    bouton_dimension_menu(screen, pyEvent.pos, choix_x, choix_y,
+                                          color_fond)
+                if pyEvent.type == MOUSEBUTTONDOWN:
+                    (choix_x, choix_y) = clic_bouton_dimension(pyEvent.pos, choix_x,
+                                                               choix_y)
+                    if choix_x != 0 and choix_y != 0 :
+                        pvp = False
+                        plateau = reset(color_fond, choix_x + 1, choix_y + 1)
+                        dimension = [choix_x + 1, choix_y + 1]
+                        choix_x, choix_y = 0, 0
+                        joue = True
+                        mode_pvp = True
+            display.flip()
 
-    info("Début de l'exécution de la boucle de choix")
-    while pvr :
-        for pyEvent in event.get():
-            if pyEvent.type == QUIT:
-                pvr = False
-                run = False
-                joue = False
-            if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                initialise_menu(screen, color_fond)
-                pvr = False
-                clignote = False
-            if pyEvent.type == MOUSEMOTION:
-                bouton_menu_robots(screen, pyEvent.pos, color_fond)
-            if pyEvent.type == MOUSEBUTTONDOWN:
-                num_robot = clic_bouton_robot(pyEvent.pos)
-                if num_robot != -1 :
-                    dimension_boucle = True
-                    dimension_menu(screen, color_fond)
-                    display.flip()
+        info("Début de l'exécution de la boucle de choix")
+        while pvr :
+            for pyEvent in event.get():
+                if pyEvent.type == QUIT:
+                    pvr = False
+                    run = False
+                    joue = False
+                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                    initialise_menu(screen, color_fond)
+                    pvr = False
+                    clignote = False
+                if pyEvent.type == MOUSEMOTION:
+                    bouton_menu_robots(screen, pyEvent.pos, color_fond)
+                if pyEvent.type == MOUSEBUTTONDOWN:
+                    num_robot = clic_bouton_robot(pyEvent.pos)
+                    if num_robot != -1 :
+                        dimension_boucle = True
+                        dimension_menu(screen, color_fond)
+                        display.flip()
 
-                    # boucle de dimension
-                    info(
-                        "Début de l'exécution de la boucle de choix des dimensions")
-                    while dimension_boucle :
-                        for pyEvent in event.get():
-                            if pyEvent.type == QUIT:
-                                dimension_boucle = False
-                                pvr = False
-                                run = False
-                                joue = False
-                            if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                                initialise_menu(screen, color_fond)
-                                dimension_boucle = False
-                                pvr = False
-                                clignote = False
-                            if pyEvent.type == MOUSEMOTION:
-                                bouton_dimension_menu(screen, pyEvent.pos,
-                                                      choix_x, choix_y, color_fond)
-                            if pyEvent.type == MOUSEBUTTONDOWN:
-                                (choix_x, choix_y) = clic_bouton_dimension(
-                                    pyEvent.pos, choix_x, choix_y)
-                                if choix_x != 0 and choix_y != 0 :
+                        # boucle de dimension
+                        info(
+                            "Début de l'exécution de la boucle de choix des dimensions")
+                        while dimension_boucle :
+                            for pyEvent in event.get():
+                                if pyEvent.type == QUIT:
                                     dimension_boucle = False
                                     pvr = False
-                                    plateau = reset(color_fond, choix_x + 1,
-                                                    choix_y + 1)
-                                    dimension = [choix_x + 1, choix_y + 1]
-                                    choix_x, choix_y = 0, 0
-                                    joue = True
-                                    mode_pvr = True
+                                    run = False
+                                    joue = False
+                                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                                    initialise_menu(screen, color_fond)
+                                    dimension_boucle = False
+                                    pvr = False
+                                    clignote = False
+                                if pyEvent.type == MOUSEMOTION:
+                                    bouton_dimension_menu(screen, pyEvent.pos,
+                                                          choix_x, choix_y, color_fond)
+                                if pyEvent.type == MOUSEBUTTONDOWN:
+                                    (choix_x, choix_y) = clic_bouton_dimension(
+                                        pyEvent.pos, choix_x, choix_y)
+                                    if choix_x != 0 and choix_y != 0 :
+                                        dimension_boucle = False
+                                        pvr = False
+                                        plateau = reset(color_fond, choix_x + 1,
+                                                        choix_y + 1)
+                                        dimension = [choix_x + 1, choix_y + 1]
+                                        choix_x, choix_y = 0, 0
+                                        joue = True
+                                        mode_pvr = True
+                            display.flip()
+            display.flip()
+
+        info("Début de l'exécution de la boucle de choix")
+        while rvr :
+            for pyEvent in event.get():
+                if pyEvent.type == QUIT:
+                    rvr = False
+                    run = False
+                    joue = False
+                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                    initialise_menu(screen, color_fond)
+                    rvr = False
+                if pyEvent.type == MOUSEMOTION:
+                    bouton_robots_battle(
+                        screen, pyEvent.pos, num_robot1, num_robot2, color_fond)
+                if pyEvent.type == MOUSEBUTTONDOWN:
+                    (num_robot1, num_robot2) = clic_robots_battle(
+                        screen, pyEvent.pos, num_robot1, num_robot2)
+                    if num_robot1 != -1 and num_robot2 != -1 :
+                        dimension_boucle = True
+                        clignote = False
+                        dimension_menu(screen, color_fond)
                         display.flip()
-        display.flip()
 
-    info("Début de l'exécution de la boucle de choix")
-    while rvr :
-        for pyEvent in event.get():
-            if pyEvent.type == QUIT:
-                rvr = False
-                run = False
-                joue = False
-            if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                initialise_menu(screen, color_fond)
-                rvr = False
-            if pyEvent.type == MOUSEMOTION:
-                bouton_robots_battle(
-                    screen, pyEvent.pos, num_robot1, num_robot2, color_fond)
-            if pyEvent.type == MOUSEBUTTONDOWN:
-                (num_robot1, num_robot2) = clic_robots_battle(
-                    screen, pyEvent.pos, num_robot1, num_robot2)
-                if num_robot1 != -1 and num_robot2 != -1 :
-                    dimension_boucle = True
-                    clignote = False
-                    dimension_menu(screen, color_fond)
-                    display.flip()
-
-                    # boucle de dimension
-                    info(
-                        "Début de l'exécution de la boucle de choix des dimensions")
-                    while dimension_boucle :
-                        for pyEvent in event.get():
-                            if pyEvent.type == QUIT:
-                                dimension_boucle = False
-                                rvr = False
-                                run = False
-                                joue = False
-                            if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                                initialise_menu(screen, color_fond)
-                                dimension_boucle = False
-                                rvr = False
-                                warning(
-                                    "L'utilisateur n'a pas sélectionné de dimension",
-                                    "il revient au menu")
-                            if pyEvent.type == MOUSEMOTION:
-                                bouton_dimension_menu(
-                                    screen, pyEvent.pos, choix_x, choix_y, color_fond)
-                            if pyEvent.type == MOUSEBUTTONDOWN:
-                                (choix_x, choix_y) = clic_bouton_dimension(
-                                    pyEvent.pos, choix_x, choix_y)
-                                if choix_x != 0 and choix_y != 0 :
+                        # boucle de dimension
+                        info(
+                            "Début de l'exécution de la boucle de choix des dimensions")
+                        while dimension_boucle :
+                            for pyEvent in event.get():
+                                if pyEvent.type == QUIT:
                                     dimension_boucle = False
                                     rvr = False
-                                    plateau = reset(
-                                        color_fond, choix_x + 1, choix_y + 1)
-                                    dimension = [choix_x + 1, choix_y + 1]
-                                    choix_x, choix_y = 0, 0
-                                    joue = True
-                                    mode_rvr = True
-                        display.flip()
-        display.flip()
+                                    run = False
+                                    joue = False
+                                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                                    initialise_menu(screen, color_fond)
+                                    dimension_boucle = False
+                                    rvr = False
+                                    warning(
+                                        "L'utilisateur n'a pas sélect de dimension",
+                                        "il revient au menu")
+                                if pyEvent.type == MOUSEMOTION:
+                                    bouton_dimension_menu(
+                                        screen, pyEvent.pos,
+                                        choix_x, choix_y, color_fond)
+                                if pyEvent.type == MOUSEBUTTONDOWN:
+                                    (choix_x, choix_y) = clic_bouton_dimension(
+                                        pyEvent.pos, choix_x, choix_y)
+                                    if choix_x != 0 and choix_y != 0 :
+                                        dimension_boucle = False
+                                        rvr = False
+                                        plateau = reset(
+                                            color_fond, choix_x + 1, choix_y + 1)
+                                        dimension = [choix_x + 1, choix_y + 1]
+                                        choix_x, choix_y = 0, 0
+                                        joue = True
+                                        mode_rvr = True
+                            display.flip()
+            display.flip()
 
-    info("Début de l'exécution de la boucle de choix des couleurs")
-    while menu_color :
-        for pyEvent in event.get():
-            if pyEvent.type == QUIT:
-                menu_color = False
-                run = False
-                joue = False
-            if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                initialise_menu(screen, color_fond)
-                menu_color = False
-                warning(
-                    "L'utilisateur n'a pas sélectionné de couleur",
-                    "la couleur par défaut sera utilisée.")
-            if pyEvent.type == MOUSEMOTION:
-                bouton_menu_couleur(screen, pyEvent.pos, color_fond, choix_color_1)
-            if pyEvent.type == MOUSEBUTTONDOWN:
-                (choix_color_fond, choix_color_1, choix_color_2) = clic_menu_couleur(
-                    pyEvent.pos, choix_color_1, choix_color_2)
-                if choix_color_1 != -1:
-                    if choix_color_2 != -1 or choix_color_fond != -1  :
-                        menu_color = False
-                        (color_fond, color_1, color_2) = attribue_color(
-                            color_fond, color_1, color_2, choix_color_fond,
-                            choix_color_1, choix_color_2)
-                        choix_color_fond, choix_color_1, choix_color_2 = -1, -1, -1
+        info("Début de l'exécution de la boucle de choix des couleurs")
+        while menu_color :
+            for pyEvent in event.get():
+                if pyEvent.type == QUIT:
+                    menu_color = False
+                    run = False
+                    joue = False
+                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                    initialise_menu(screen, color_fond)
+                    menu_color = False
+                    warning(
+                        "L'utilisateur n'a pas sélectionné de couleur",
+                        "la couleur par défaut sera utilisée.")
+                if pyEvent.type == MOUSEMOTION:
+                    bouton_menu_couleur(screen, pyEvent.pos, color_fond, choix_color_1)
+                if pyEvent.type == MOUSEBUTTONDOWN:
+                    (choix_color_fond,
+                     choix_color_1,
+                     choix_color_2) = clic_menu_couleur(
+                        pyEvent.pos, choix_color_1, choix_color_2)
+                    if choix_color_1 != -1:
+                        if choix_color_2 != -1 or choix_color_fond != -1  :
+                            menu_color = False
+                            (color_fond, color_1, color_2) = attribue_color(
+                                color_fond, color_1, color_2, choix_color_fond,
+                                choix_color_1, choix_color_2)
+                            choix_color_fond, choix_color_1, choix_color_2 = -1, -1, -1
+                            initialise_menu(screen, color_fond)
+            display.flip()
+
+        # boucle de partie :
+        info("Début de l'exécution de la boucle de la partie")
+        while joue :
+            if mode_pvp :
+                for pyEvent in event.get():
+                    if pyEvent.type == QUIT:
+                        run = False
+                        joue = False
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_r :
+                        plateau = reset(color_fond, dimension[0], dimension[1])
+                        Turn[0] = 0
+                    if pyEvent.type == MOUSEBUTTONDOWN:
+                        clic_arete(plateau, pyEvent.pos, pyEvent.button)
+
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
                         initialise_menu(screen, color_fond)
-        display.flip()
+                        joue = False
+                        mode_pvp = False
 
-    # boucle de partie :
-    info("Début de l'exécution de la boucle de la partie")
-    while joue :
-        if mode_pvp :
-            for pyEvent in event.get():
-                if pyEvent.type == QUIT:
-                    run = False
-                    joue = False
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_r :
-                    plateau = reset(color_fond, dimension[0], dimension[1])
-                    Turn[0] = 0
-                if pyEvent.type == MOUSEBUTTONDOWN:
-                    clic_arete(plateau, pyEvent.pos, pyEvent.button)
+            if mode_pvr :
+                for pyEvent in event.get():
+                    if pyEvent.type == QUIT:
+                        run = False
+                        joue = False
+                    if pyEvent.type == MOUSEBUTTONDOWN:
+                        clic_arete(plateau, pyEvent.pos, pyEvent.button)
+                        while Turn[0] == 1 and not pause:
+                            if num_robot == 0 :
+                                robot0(clignote, plateau, color_2)
+                            if num_robot == 1 :
+                                robot1(clignote, plateau, color_2)
+                            if num_robot == 2:
+                                algo1(clignote, plateau, color_2)
+                            if num_robot == 3:
+                                algo2(clignote, plateau, color_2)
+                            if num_robot == 4 :
+                                algo3(clignote, plateau, color_2)
+                            if num_robot == 5:
+                                algo4(clignote, plateau, color_2)
+                        # (avancement, tour_num) =
+                        # coup(2, avancement, tour_num, plateau)
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_p :
+                        pause = not pause
 
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                    initialise_menu(screen, color_fond)
-                    joue = False
-                    mode_pvp = False
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_r :
+                        plateau = reset(color_fond, dimension[0], dimension[1])
+                        Turn[0] = 0
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                        Turn[0] = 0
+                        initialise_menu(screen, color_fond)
+                        joue = False
+                        mode_pvr = False
+                        num_robot = -1
 
-        if mode_pvr :
-            for pyEvent in event.get():
-                if pyEvent.type == QUIT:
-                    run = False
-                    joue = False
-                if pyEvent.type == MOUSEBUTTONDOWN:
-                    clic_arete(plateau, pyEvent.pos, pyEvent.button)
-                    while Turn[0] == 1 and not pause:
-                        if num_robot == 0 :
+            if mode_rvr :
+                for pyEvent in event.get():
+                    if pyEvent.type == QUIT:
+                        run = False
+                        joue = False
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
+                        initialise_menu(screen, color_fond)
+                        joue = False
+                        Turn[0] = 0
+                        mode_pvp, mode_pvr, mode_rvr = False, False, False
+                        num_robot1, num_robot2 = -1, -1
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_r :
+                        plateau = reset(color_fond, dimension[0], dimension[1])
+                        Turn[0] = 0
+                    if pyEvent.type == KEYDOWN and pyEvent.key == K_p :
+                        pause = not pause
+                    if pyEvent.type == MOUSEBUTTONDOWN:
+                        clic_arete(plateau, pyEvent.pos, pyEvent.button)
+
+                if nb_cases_vide(plateau) > 0 :
+                    while Turn[0] == 1 and nb_cases_vide(plateau) > 0 and not pause:
+                        if num_robot1 == 0 :
+                            robot0(clignote, plateau, color_1)
+                        if num_robot1 == 1 :
+                            robot1(clignote, plateau, color_1)
+                        if num_robot1 == 2:
+                            algo1(clignote, plateau, color_1)
+                        if num_robot1 == 3:
+                            algo2(clignote, plateau, color_1)
+                        if num_robot1 == 4 :
+                            algo3(clignote, plateau, color_1)
+                        if num_robot1 == 5:
+                            algo4(clignote, plateau, color_1)
+                    while Turn[0] != 1 and nb_cases_vide(plateau) > 0 and not pause :
+                        if num_robot2 == 0 :
                             robot0(clignote, plateau, color_2)
-                        if num_robot == 1 :
+                        if num_robot2 == 1 :
                             robot1(clignote, plateau, color_2)
-                        if num_robot == 2:
+                        if num_robot2 == 2:
                             algo1(clignote, plateau, color_2)
-                        if num_robot == 3:
+                        if num_robot2 == 3:
                             algo2(clignote, plateau, color_2)
-                        if num_robot == 4 :
+                        if num_robot2 == 4 :
                             algo3(clignote, plateau, color_2)
-                        if num_robot == 5:
+                        if num_robot2 == 5:
                             algo4(clignote, plateau, color_2)
-                    # (avancement, tour_num) = coup(2, avancement, tour_num, plateau)
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_p :
-                    pause = not pause
-
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_r :
-                    plateau = reset(color_fond, dimension[0], dimension[1])
-                    Turn[0] = 0
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                    Turn[0] = 0
-                    initialise_menu(screen, color_fond)
-                    joue = False
-                    mode_pvr = False
-                    num_robot = -1
-
-        if mode_rvr :
-            for pyEvent in event.get():
-                if pyEvent.type == QUIT:
-                    run = False
-                    joue = False
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
-                    initialise_menu(screen, color_fond)
-                    joue = False
-                    Turn[0] = 0
-                    mode_pvp, mode_pvr, mode_rvr = False, False, False
-                    num_robot1, num_robot2 = -1, -1
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_r :
-                    plateau = reset(color_fond, dimension[0], dimension[1])
-                    Turn[0] = 0
-                if pyEvent.type == KEYDOWN and pyEvent.key == K_p :
-                    pause = not pause
-                if pyEvent.type == MOUSEBUTTONDOWN:
-                    clic_arete(plateau, pyEvent.pos, pyEvent.button)
-
-            if nb_cases_vide(plateau) > 0 :
-                while Turn[0] == 1 and nb_cases_vide(plateau) > 0 and not pause:
-                    if num_robot1 == 0 :
-                        robot0(clignote, plateau, color_1)
-                    if num_robot1 == 1 :
-                        robot1(clignote, plateau, color_1)
-                    if num_robot1 == 2:
-                        algo1(clignote, plateau, color_1)
-                    if num_robot1 == 3:
-                        algo2(clignote, plateau, color_1)
-                    if num_robot1 == 4 :
-                        algo3(clignote, plateau, color_1)
-                    if num_robot1 == 5:
-                        algo4(clignote, plateau, color_1)
-                while Turn[0] != 1 and nb_cases_vide(plateau) > 0 and not pause :
-                    if num_robot2 == 0 :
-                        robot0(clignote, plateau, color_2)
-                    if num_robot2 == 1 :
-                        robot1(clignote, plateau, color_2)
-                    if num_robot2 == 2:
-                        algo1(clignote, plateau, color_2)
-                    if num_robot2 == 3:
-                        algo2(clignote, plateau, color_2)
-                    if num_robot2 == 4 :
-                        algo3(clignote, plateau, color_2)
-                    if num_robot2 == 5:
-                        algo4(clignote, plateau, color_2)
+            display.flip()
         display.flip()
-    display.flip()
 
+    quit()
 
-quit()
+    print("Exécution du programme principal")

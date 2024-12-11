@@ -5,7 +5,6 @@ Documentation du jeu Dots and Boxes en Python. Ce projet utilise **Sphinx** pour
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    affichage
    algos

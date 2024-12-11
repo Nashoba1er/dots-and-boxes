@@ -153,11 +153,9 @@ les chaines restantes sont de longueur au moins 3</p>
 <span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">carre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.carre" title="Lien vers cette définition">¶</a></dt>
 <dd><p>entrée :le plateau sous forme [H, V, C], une couleur “c”
 effet :colorie en “c” les carrés pouvant être coloriés
-(ceux non coloriés et entourés de 4 arêtes)</p>
-<blockquote>
-<div><p>modifie le plateau en conséquence</p>
-</div></blockquote>
-<p>sortie :renvoie true s’il a effectué un coloriage et false sinon</p>
+(ceux non coloriés et entourés de 4 arêtes)
+modifie le plateau en conséquence
+sortie :renvoie true s’il a effectué un coloriage et false sinon</p>
 </dd></dl>
 
 <dl class="py function">
@@ -183,14 +181,12 @@ sortie :()</p>
 <dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.coupe_chaine_2">
 <span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">coupe_chaine_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.coupe_chaine_2" title="Lien vers cette définition">¶</a></dt>
 <dd><p>entrée :un plateau sous forme [H, V, C]
-effet :</p>
-<blockquote>
-<div><p>Si parmis les arêtes disponibles,
+effet :
+Si parmis les arêtes disponibles,
 une ferme une chaine de longueur exactement 2 en la coupant en 2,
 on renvoie celle-ci</p>
-<p>Sinon on renvoie l’arête qui ferme la plus petite chaine</p>
-</div></blockquote>
-<p>sortie :une arête sous forme (o, x, y)</p>
+<p>Sinon on renvoie l’arête qui ferme la plus petite chaine
+sortie :une arête sous forme (o, x, y)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -309,49 +305,88 @@ effet :effectue un tour de jeu de l’algo 5,
 dans le cas où on peut appliquer le théorème de sprague-grundy
 sortie :()</p>
 <dl>
-<dt>explication aglo reposant sur sprague grundy :</dt><dd><dl>
-<dt>si on ne peut pas prendre de point :</dt><dd><blockquote>
-<div><dl class="simple">
-<dt>on calcule le nombre de grundy sur ce plateau :</dt><dd><dl class="simple">
-<dt>s’il vaut 1 :le joueur qui doit jouer gagne (ici nous) :</dt><dd><dl class="simple">
-<dt>combien la longueur de la chaine minimale vaut-elle ?</dt><dd><p>si elle vaut 1 :
-on prend l’arête correspondante
-si elle vaut 2 :
-on prend une arête qui coupe en 2 une chaine de 2</p>
-</dd>
-</dl>
-</dd>
-<dt>s’il vaut 0 :le joueur qui doit jouer perd (ici nous) :</dt><dd><p>on prend une arête d’une chaine de longueur 1,
-en espérant que le joueur adverse ouvre une chaine de 2
-sans la couper en 2</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
-<dl>
-<dt>si on peut prendre un point :</dt><dd><dl class="simple">
-<dt>si la chaine ouverte est de longueur 1, on a pas de choix:</dt><dd><p>on prend ce point et on relance l’algo
-sur le plateau modifié en conséquence</p>
-</dd>
-</dl>
-<p>sinon la chaine ouverte est de longueur 2,
-on a le choix de prendre un point où de le laisser à l’adversaire:</p>
+<dt>explication aglo reposant sur sprague grundy :</dt><dd><ul>
+<li><dl>
+<dt>si on ne peut pas prendre de point :</dt><dd><ul>
+<li><dl>
+<dt>on calcule le nombre de grundy sur ce plateau :</dt><dd><ul>
+<li><dl>
+<dt>s’il vaut 1 :le joueur qui doit jouer gagne (ici nous) :</dt><dd><ul>
+<li><dl>
+<dt>combien la longueur de la chaine minimale vaut-elle ?</dt><dd><ul class="simple">
+<li><p>si elle vaut 1 :</p></li>
+<li><p>on prend l’arête correspondante</p></li>
+</ul>
 <blockquote>
-<div><dl class="simple">
-<dt>on calcule le nombre de grundy si les 2 cases sont prises :</dt><dd><dl class="simple">
-<dt>s’il vaut 1 :ie le joueur qui doit jouer gagne :</dt><dd><p>on prend les deux arêtes. tip :prendre l’arête gagnante.</p>
-</dd>
-<dt>sinon s’il vaut 0 :le joueur qui doit jouer perd :</dt><dd><p>on prend l’arête de la règle de la double case.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<div><p>-si elle vaut 2 :
+-on prend une arête qui coupe en 2 une chaine de 2</p>
 </div></blockquote>
 </dd>
 </dl>
+</li>
+</ul>
 </dd>
 </dl>
+</li>
+<li><dl class="simple">
+<dt>s’il vaut 0 :le joueur qui doit jouer perd (ici nous) :</dt><dd><ul class="simple">
+<li><p>on prend une arête d’une chaine de longueur 1,</p></li>
+<li><p>en espérant que le joueur adverse ouvre une chaine de 2</p></li>
+<li><p>sans la couper en 2</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>si on peut prendre un point :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>si la chaine ouverte est de longueur 1, on a pas de choix:</dt><dd><ul>
+<li><p>on prend ce point et on relance l’algo</p></li>
+<li><p>sur le plateau modifié en conséquence</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>sinon la chaine ouverte est de longueur 2,</p></li>
+<li><dl class="simple">
+<dt>on a le choix de prendre un point où de le laisser à l’adversaire:</dt><dd><ul>
+<li><dl class="simple">
+<dt>on calcule le nombre de grundy si les 2 cases sont prises :</dt><dd><ul>
+<li><dl class="simple">
+<dt>s’il vaut 1 :ie le joueur qui doit jouer gagne :</dt><dd><ul>
+<li><p>on prend les deux arêtes. tip :prendre l’arête gagnante.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>sinon s’il vaut 0 :le joueur qui doit jouer perd :</dt><dd><ul>
+<li><p>on prend l’arête de la règle de la double case.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -403,8 +438,50 @@ sortie :renvoie vrai s’il parvient à le faire, et faux sinon</p>
 </dd></dl>
 
 </section>
-<section id="algorithmes">
-<h1>Algorithmes<a class="headerlink" href="#algorithmes" title="Lien vers cette rubrique">¶</a></h1>
+<section id="module-dots_and_boxes.algos">
+<span id="algorithmes"></span><h1>Algorithmes<a class="headerlink" href="#module-dots_and_boxes.algos" title="Lien vers cette rubrique">¶</a></h1>
+<dl class="simple">
+<dt>Sommaire des algos :</dt><dd><ul class="simple">
+<li><p>définitions des constantes</p></li>
+<li><p>robot0</p></li>
+<li><p>robot1</p></li>
+<li><p>algo1</p></li>
+<li><p>algo2</p></li>
+<li><p>algo3</p></li>
+<li><p>algo4</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.algos.algo1">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.algos.</span></span><span class="sig-name descname"><span class="pre">algo1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.algos.algo1" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.algos.algo2">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.algos.</span></span><span class="sig-name descname"><span class="pre">algo2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.algos.algo2" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.algos.algo3">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.algos.</span></span><span class="sig-name descname"><span class="pre">algo3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.algos.algo3" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.algos.algo4">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.algos.</span></span><span class="sig-name descname"><span class="pre">algo4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.algos.algo4" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.algos.robot0">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.algos.</span></span><span class="sig-name descname"><span class="pre">robot0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.algos.robot0" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.algos.robot1">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.algos.</span></span><span class="sig-name descname"><span class="pre">robot1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.algos.robot1" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="module-dots_and_boxes.affichage">
 <span id="affichage"></span><h1>Affichage<a class="headerlink" href="#module-dots_and_boxes.affichage" title="Lien vers cette rubrique">¶</a></h1>
@@ -671,8 +748,110 @@ sortie : un tableau [H, V, C]</p>
 <dd></dd></dl>
 
 </section>
-<section id="main">
-<h1>Main<a class="headerlink" href="#main" title="Lien vers cette rubrique">¶</a></h1>
+<section id="module-dots_and_boxes.main">
+<span id="main"></span><h1>Main<a class="headerlink" href="#module-dots_and_boxes.main" title="Lien vers cette rubrique">¶</a></h1>
+<dl>
+<dt>Sommaire :</dt><dd><p># importation</p>
+<dl>
+<dt># interface de jeu et game loop :</dt><dd><ul>
+<li><p>fonction de clic</p></li>
+<li><p>définition des variables de jeu</p></li>
+<li><dl>
+<dt>boucle de jeu :</dt><dd><p>. boucle de menu
+. boucle de choix de dimension pour pvp
+. boucle de choix de niveau de robot pour pvr
+. boucle de choix de dimension pour pvr
+. boucle de choix de niveaux de robots pour rvr
+. boucle de choix de dimension pour rvr
+. boucle de choix des couleurs
+. boucle de partie :</p>
+<blockquote>
+<div><p>&gt; boucle de jeu pvp
+&gt; boucle de jeu pvr
+&gt; boucle de jeu rvr</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.actions_possibles">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">actions_possibles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.actions_possibles" title="Lien vers cette définition">¶</a></dt>
+<dd><dl class="simple">
+<dt>entrée<span class="classifier">un coup sous forme (o, x, y),</span></dt><dd><p>un plateau « etat » donné sous forme [H, V, C]</p>
+</dd>
+</dl>
+<p>sortie : un tableau contenant toutes les actions possibles à partir du coup « coup ».</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.clic_arete">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">clic_arete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bouton</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.clic_arete" title="Lien vers cette définition">¶</a></dt>
+<dd><dl>
+<dt>entrée :</dt><dd><p>plateau sous forme [H, V, C],
+les coordonnées du clic sous forme [x, y],
+le bouton avec lequel on effectue le clic</p>
+</dd>
+<dt>effet :</dt><dd><dl class="simple">
+<dt>si les coordonnées sont correctes :</dt><dd><p>modifie le plateau,
+dessine une arête à l’endroit cliqué, de la couleur associée au bouton</p>
+</dd>
+</dl>
+<p>sinon : ne fais rien</p>
+</dd>
+</dl>
+<p>sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.coup_minmax">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">coup_minmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.coup_minmax" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : un plateau “etat”
+effet : donne le meilleur coup pour ce plateau
+sortie : un coup sous forme (o, x, y)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.coups_possibles">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">coups_possibles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.coups_possibles" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : un plateau « etat » donné sous forme [H, V, C]
+effet : recense les arêtes des chaines de longueur &lt;= 2
+sortie : liste des coups possibles. chaque coup est de la forme (o, x, y)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.execute_action">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">execute_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.execute_action" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une liste de coup et un plateau « etat » sous forme [H, V, C]
+effet : exécute la séquence de coups “action” sur le plateau
+sortie : le nouvel état de l’environnement,
+le nombre de case gagné en jouant l’action</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.execute_coup">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">execute_coup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.execute_coup" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une arête sous forme (o, x, y) et un plateau « etat » sous forme [H, V, C]
+sortie : le nouvel état de l’environnement,
+le nombre de case gagné en jouant le coup</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.fin_partie">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">fin_partie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.fin_partie" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : un plateau « etat » donné sous forme [H, V, C]
+sortie : un booléen valant true ssi la partie est finie</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.main.minmax">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.main.</span></span><span class="sig-name descname"><span class="pre">minmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joueur_maximisant</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.main.minmax" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
