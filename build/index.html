@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dots-and-boxes documentation &#8212; Documentation dots-and-boxes 2024</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=e763345a"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="dots-and-boxes-documentation">
+<h1>dots-and-boxes documentation<a class="headerlink" href="#dots-and-boxes-documentation" title="Lien vers cette rubrique">¶</a></h1>
+<p>Documentation du jeu Dots and Boxes en Python. Ce projet utilise <strong>Sphinx</strong> pour générer la documentation à partir des docstrings dans le code source.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-dots_and_boxes.fonctions_de_jeu">
+<span id="fonctions-de-jeu"></span><h1>Fonctions de jeu<a class="headerlink" href="#module-dots_and_boxes.fonctions_de_jeu" title="Lien vers cette rubrique">¶</a></h1>
+<dl class="simple">
+<dt>Sommaire des fonctions pour les algos :</dt><dd><ul class="simple">
+<li><p>pour_y_voir_plus_clair(array)</p></li>
+<li><p>carre(plateau, c)</p></li>
+<li><p>test_danger(plateau, o, x, y)</p></li>
+<li><p>prochaine_arete(o, x, y, Chaine)</p></li>
+<li><p>longueur_chaine(coordo, Chaine)</p></li>
+<li><p>random_arete_dispo(plateau)</p></li>
+<li><p>colorie_chaine(clignote, coordo, Chai ne, couleur_bot)</p></li>
+<li><p>bool_phase_finale(plateau)</p></li>
+<li><p>fin_phase_finale(plateau)</p></li>
+<li><p>nb_arete_chaine(coordo, Chaine)</p></li>
+<li><p>bool_cycle_started(o, x, y, Chaine)</p></li>
+<li><p>nb_cases_vide(Chaine)</p></li>
+<li><p>best3_arete(arete1, arete2, arete3, chaine)</p></li>
+<li><p>trouve_meilleure_arête(chaine)</p></li>
+<li><p>rempli_ce_qui_doit_letre(plateau)</p></li>
+<li><p>trouves_les_meilleurs_arêtes(chaine)</p></li>
+<li><p>aretes_gagnantes(plateau)</p></li>
+<li><p>arete_sure(chaine)</p></li>
+<li><dl class="simple">
+<dt>fonctions de la double case</dt><dd><p>. tue_cycle(clignote, plateau, couleur_bot)
+. que_next1_next2(clignote, plateau, couleur_bot)
+. regle_double_case(clignote, plateau, couleur_bot)</p>
+</dd>
+</dl>
+</li>
+<li><p>coupe_chaine_2(plateau)</p></li>
+<li><p>complète_chaine(coordo, Chaine)</p></li>
+<li><p>arete_sure_existence(plateau)</p></li>
+<li><p>test_grundy(plateau)</p></li>
+<li><p>nombre_grundy(plateau)</p></li>
+<li><p>sprague_grundy(clignote, plateau, c)</p></li>
+<li><dl class="simple">
+<dt>fonctions du minmax</dt><dd><p>. coups_possibles(etat)
+. execute_coup(coup, etat)
+. fin_partie(etat)
+. actions_possibles(coup, etat)
+. execute_action(action, etat)
+. minmax(etat, joueur_maximisant)
+. coup_minmax(etat)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.arete_sure">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">arete_sure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.arete_sure" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :renvoie une arête au pif qui ne donne pas de point à l’adversaire,
+et false sinon
+sortie :une arête sous forme (o, x, y) ou False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.arete_sure_existence">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">arete_sure_existence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.arete_sure_existence" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :renvoie True ssi il existe une arête sûre
+(une arête qui ne donne pas de points à l’adversaire)
+sortie :un booléen</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.aretes_gagnantes">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">aretes_gagnantes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.aretes_gagnantes" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :renvoie une arête permettant de gagner des points et false sinon
+sortie :une arête sous forme (o, x, y) ou False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.best3_arete">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">best3_arete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arete1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arete2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arete3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.best3_arete" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :trois arêtes différentes sous forme [o, x, y],
+un plateau sous forme [H, V, C]
+effet :trouve l’arête fermant la chaîne la plus courte
+sortie :renvoie le numéro (1, 2 ou 3) de l’arête ayant la chaine la plus courte</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.bool_cycle_started">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">bool_cycle_started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.bool_cycle_started" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :o, x, y 3 entiers correspondant aux coordonnées d’une arête,
+un plateau sous forme [H, V, C]
+effet :renvoie vrai ssi la chaine “fermée” par l’arête (o, x, y) est un cycle
+sortie :un booléen
+-&gt; une chaine est “fermée” si on peut gagner tous ses carrés en un tour
+-&gt; un cycle est une chaine qui se referme sur elle-même</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.bool_phase_finale">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">bool_phase_finale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.bool_phase_finale" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :renvoie un booléen signifiant si le plateau vérifie
+la définition de phase finale
+sortie :un booléen</p>
+<dl class="simple">
+<dt>définition phase finale :</dt><dd><p>une fois les chaines ouvertes complétées (celle où on peut gagner des points)
+aucune arête sûre :où que l’on joue on va perdre /
+les chaines restantes sont de longueur au moins 3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.carre">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">carre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.carre" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :le plateau sous forme [H, V, C], une couleur “c”
+effet :colorie en “c” les carrés pouvant être coloriés
+(ceux non coloriés et entourés de 4 arêtes)</p>
+<blockquote>
+<div><p>modifie le plateau en conséquence</p>
+</div></blockquote>
+<p>sortie :renvoie true s’il a effectué un coloriage et false sinon</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.colorie_chaine">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">colorie_chaine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.colorie_chaine" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :une arête sous forme (o, x, y),
+un plateau sous forme [H, V, C], une couleur
+effet :colorie entièrement (sur l’écran) la chaine fermée
+par l’arête (o, x, y), et modifie le plateau en conséquence
+sortie :()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.complete_chaine">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">complète_chaine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.complete_chaine" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :une arête sous forme (o, x, y) un plateau sous forme [H, V, C]
+effet :rempli la chaine fermée par l’arête passée en entrée,
+ie modifie le plateau en conséquence mais ne modifie pas l’écran
+sortie :()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.coupe_chaine_2">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">coupe_chaine_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.coupe_chaine_2" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :</p>
+<blockquote>
+<div><p>Si parmis les arêtes disponibles,
+une ferme une chaine de longueur exactement 2 en la coupant en 2,
+on renvoie celle-ci</p>
+<p>Sinon on renvoie l’arête qui ferme la plus petite chaine</p>
+</div></blockquote>
+<p>sortie :une arête sous forme (o, x, y)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.fin_phase_finale">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">fin_phase_finale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.fin_phase_finale" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :détermine s’il reste une seule chaine à remplir
+sortie :True ssi le plateau est en fin de phase finale</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.longueur_chaine">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">longueur_chaine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.longueur_chaine" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :une liste d’arêtes sous forme [(o, x, y),…]
+et un plateau sous forme [H, V, C]
+effet :compte récursivement la longueur de la chaine “fermée” par (o, x, y)
+sortie :un entier donnant le nombre de carré contenus dans la chaine (sa longueur)
+-&gt; ! le plateau passé en entrée est modifié
+-&gt; une chaine “fermée” est une chaine dont on peut gagner
+tous les carrés en un tour</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.nb_arete_chaine">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">nb_arete_chaine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.nb_arete_chaine" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un arête sous forme (o, x, y) un plateau sous forme [H, V, C]
+effet :compte le nombre d’arêtes dans la chaine “fermée”
+par l’arête de coordonée coordo = (o, x, y)
+sortie :le nombre d’arêtes dans la chaine “fermée”
+par l’arête de coordonée coordo
+-&gt; une chaine “fermée” est une chaine dont on peut gagner
+tous les carrés en un tour</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.nb_cases_vide">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">nb_cases_vide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.nb_cases_vide" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :compte le nombre de case non remplie du plateau
+sortie :un entier</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.nombre_grundy">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">nombre_grundy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.nombre_grundy" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :calcul le nombre de grundy
+sortie :renvoie cet entier</p>
+<dl class="simple">
+<dt>explication calcul du nombre de grundy :</dt><dd><dl class="simple">
+<dt>congruence du nombre de chaines de longueur &lt; 3 modulo 2 :</dt><dd><p>s’il vaut 1 :c’est gagnant pour celui qui va joueur
+sinon s’il vaut 0 :c’est plutôt perdant pour celui qui va jouer</p>
+</dd>
+<dt>calcul en pratique :</dt><dd><p>pour chaque arête interessante (d’une chaine de longueur &lt; 3),
+complète la chaine et ajoute 1</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.pour_y_voir_plus_clair">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">pour_y_voir_plus_clair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.pour_y_voir_plus_clair" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un tableau [H, V, C]
+effet :print l’état du jeu actuel dans le terminal
+sortie :()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.prochaine_arete">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">prochaine_arete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.prochaine_arete" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : 3 entiers o, x, y formant une coordonné d’arête,
+le plateau sous forme [H, V, C]
+effet :trouve toutes le arêtes permettant de gagner un point
+après avoir joué l’arête (o, x, y)
+sortie :la liste des arêtes suivantes permettant de gagner
+un point sous forme [(o, x, y), … ]
+avec potentiellement o = 2 si l’arête placée offre un carré directement.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.que_next1_next2">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">que_next1_next2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.que_next1_next2" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C], une couleur “couleur_bot”</p>
+<p>effet :trouve 2 arêtes gagnantes, et trace toutes les autres gagnantes</p>
+<p>sortie :renvoie (False, [- 1, - 1, - 1], [- 1, - 1, - 1])
+si il en a tracé au moins une, et (True, next_arete1, next_arete2) sinon</p>
+<p>! l’algo peut très bien renvoyer (True, [- 1, - 1, - 1], [- 1, - 1, - 1])
+ou (True, next_arete1, [- 1, - 1, - 1]) si il y a moins de 2 arêtes gagnantes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.random_arete_dispo">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">random_arete_dispo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.random_arete_dispo" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :trouve aléatoirement une arête disponible
+sortie :renvoie (o, x, y) une arête libre au pif et
+renvoie (- 1, 0, 0) s’il n’y en a plus</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.regle_double_case">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">regle_double_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.regle_double_case" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C], une couleur “c”</p>
+<p>effet :trace les arêtes qui respectent la règle de la double case
+en prenant en compte le cas des cycles, et modifie le plateau en conséquence</p>
+<p>sortie :()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.sprague_grundy">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">sprague_grundy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.sprague_grundy" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C], une couleur c
+effet :effectue un tour de jeu de l’algo 5,
+dans le cas où on peut appliquer le théorème de sprague-grundy
+sortie :()</p>
+<dl>
+<dt>explication aglo reposant sur sprague grundy :</dt><dd><dl>
+<dt>si on ne peut pas prendre de point :</dt><dd><blockquote>
+<div><dl class="simple">
+<dt>on calcule le nombre de grundy sur ce plateau :</dt><dd><dl class="simple">
+<dt>s’il vaut 1 :le joueur qui doit jouer gagne (ici nous) :</dt><dd><dl class="simple">
+<dt>combien la longueur de la chaine minimale vaut-elle ?</dt><dd><p>si elle vaut 1 :
+on prend l’arête correspondante
+si elle vaut 2 :
+on prend une arête qui coupe en 2 une chaine de 2</p>
+</dd>
+</dl>
+</dd>
+<dt>s’il vaut 0 :le joueur qui doit jouer perd (ici nous) :</dt><dd><p>on prend une arête d’une chaine de longueur 1,
+en espérant que le joueur adverse ouvre une chaine de 2
+sans la couper en 2</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>si on peut prendre un point :</dt><dd><dl class="simple">
+<dt>si la chaine ouverte est de longueur 1, on a pas de choix:</dt><dd><p>on prend ce point et on relance l’algo
+sur le plateau modifié en conséquence</p>
+</dd>
+</dl>
+<p>sinon la chaine ouverte est de longueur 2,
+on a le choix de prendre un point où de le laisser à l’adversaire:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>on calcule le nombre de grundy si les 2 cases sont prises :</dt><dd><dl class="simple">
+<dt>s’il vaut 1 :ie le joueur qui doit jouer gagne :</dt><dd><p>on prend les deux arêtes. tip :prendre l’arête gagnante.</p>
+</dd>
+<dt>sinon s’il vaut 0 :le joueur qui doit jouer perd :</dt><dd><p>on prend l’arête de la règle de la double case.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.test_danger">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">test_danger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.test_danger" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :le plateau sous forme [H, V, C],
+3 entiers o, x, y formant une coordonné d’arête
+effet :test si l’arête o, x, y ne donne aucun point à l’adversaire
+sortie :un booléen</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.test_grundy">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">test_grundy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.test_grundy" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :determine si on peut appliquer le théorème de sprague-grundy
+sur le plateau donné
+sortie :un booléen</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.trouve_meilleure_arete">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">trouve_meilleure_arête</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.trouve_meilleure_arete" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :dans le cas où aucune arête n’est sûre,
+trouve la meilleure arête ie celle qui permet d’ouvrir la chaîne la moins grande
+sortie :un tableau [long, o, x, y] avec long la longueur de la chaine
+que ferme l’arête de coordonnées o, x, y</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.trouves_les_meilleurs_aretes">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">trouves_les_meilleurs_arêtes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chaine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.trouves_les_meilleurs_aretes" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C]
+effet :renvoie la liste des arêtes non prises des chaînes
+de longueur inférieure ou égale à 2
+sortie :une liste sous forme [long, o, x, y]
+avec long la longueur de la chaine que ferme l’arête de coordonnées (o, x, y)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.fonctions_de_jeu.tue_cycle">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.fonctions_de_jeu.</span></span><span class="sig-name descname"><span class="pre">tue_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur_bot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.fonctions_de_jeu.tue_cycle" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée :un plateau sous forme [H, V, C], une couleur “couleur_bot”
+effet :trouve et trace une arête qui gagne un point dans un cycle de longueur &lt; 4
+sortie :renvoie vrai s’il parvient à le faire, et faux sinon</p>
+</dd></dl>
+
+</section>
+<section id="algorithmes">
+<h1>Algorithmes<a class="headerlink" href="#algorithmes" title="Lien vers cette rubrique">¶</a></h1>
+</section>
+<section id="module-dots_and_boxes.affichage">
+<span id="affichage"></span><h1>Affichage<a class="headerlink" href="#module-dots_and_boxes.affichage" title="Lien vers cette rubrique">¶</a></h1>
+<dl>
+<dt>Sommaire des fonctions d’affichage :</dt><dd><ul>
+<li><p>définition des couleurs</p></li>
+<li><p>définition de l’écran</p></li>
+<li><p>le_plateau(dim_x, dim_y)</p></li>
+<li><p>reset(color, dim_x, dim_y)</p></li>
+<li><p>draw_arete(clignote, plateau, orientation, abscisse, ordonnee, couleur)</p></li>
+<li><p>draw_carre(plateau, abscisse, ordonnee, couleur)</p></li>
+<li><dl class="simple">
+<dt>interaction avec le menu principal :</dt><dd><p>. initialise_menu(screen, color)
+. bouton_main_menu(screen, coord, color_fond)
+. clic_bouton(coord)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>interaction avec le menu des dimension :</dt><dd><p>. dimension_menu(screen, color_fond)
+. bouton_dimension_menu(screen, coord, choix_x, choix_y, color_fond)
+. clic_bouton_dimension(coord, choix_x, choix_y)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>interaction avec le menu des robots en pvr:</dt><dd><p>. menu_robot(screen, color, color_fond)
+. bouton_menu_robots(screen, coord, color_fond)
+. clic_bouton_robot(coord)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>interaction avec le menu des robots en rvr :</dt><dd><p>. menu_robots_battle(screen, color_1, color_2, color_fond)
+. bouton_robots_battle(screen, coord, num_robot1, num_robot2, color_fond)
+. clic_robots_battle(screen, coord, num_robot1, num_robot2)</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>interaction avec le menu des couleurs :</dt><dd><p>. menu_couleur(screen, color_fond)
+. bouton_menu_couleur(screen, coord, color_fond, choix_color_1)
+. clic_menu_couleur(coord, num_color_1, num_color_2)
+. attribue_color(</p>
+<blockquote>
+<div><p>color_fond,
+color_1,
+color_2,
+num_color_fond,
+num_color_1,
+num_color_2</p>
+</div></blockquote>
+<p>)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.attribue_color">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">attribue_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_color_fond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_color_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_color_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.attribue_color" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : la couleur du fond, la couleur du j1 et j2,
+leur numéros respectifs choisis
+effet : modifie (color_fond, color_1, color_2) en fonction des nouveaux choix
+sortie : renvoie (color_fond, color_1, color_2) modifié</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.bouton_dimension_menu">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">bouton_dimension_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choix_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choix_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.bouton_dimension_menu" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une coordonée [x, y],
+deux entiers correspondant au choix actuels des dimensions
+effet : colorie un bouton du menu_dimension si la coordonée lui correspond
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.bouton_main_menu">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">bouton_main_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.bouton_main_menu" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une coordonée [x, y]
+effet : colorie un bouton du menu principal si la coordonée lui correspond
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.bouton_menu_couleur">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">bouton_menu_couleur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choix_color_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.bouton_menu_couleur" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une coordonée [x, y],
+deux entiers correspondant au choix actuels des dimensions
+effet : colorie un bouton du menu_bouton si la coordonée lui correspond
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.bouton_menu_robots">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">bouton_menu_robots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.bouton_menu_robots" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une coordonée [x, y],
+deux entiers correspondant au choix actuels des dimensions
+effet : colorie un bouton du menu_robots si la coordonée lui correspond
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.bouton_robots_battle">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">bouton_robots_battle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_robot1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_robot2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.bouton_robots_battle" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une coordonée [x, y], deux entiers correspondant au choix
+actuels des dimensions
+effet : colorie un bouton du menu_robots_battle si la coordonée lui correspond
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.clic_bouton">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">clic_bouton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.clic_bouton" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une coordonée [x, y]
+effet : retourne le bouton du menu principal selectionné (1, 2 ou 3),</p>
+<blockquote>
+<div><p>et 0 si aucun bouton n’est selectionné</p>
+</div></blockquote>
+<p>sortie : un entier entre 0 et 3 compris</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.clic_bouton_dimension">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">clic_bouton_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choix_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choix_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.clic_bouton_dimension" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une coordonée [x, y], deux entiers correspondants aux choix actuels
+effet : retourne la modification des boutons du menu dimension selectionnés
+(entre 2 et 10)
+sortie : (choix_x, choix_y) modifiés</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.clic_bouton_robot">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">clic_bouton_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.clic_bouton_robot" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une coordonée [x, y], deux entiers correspondants aux choix actuels
+effet : retourne le bouton du menu_robots selectionné (entre 1 et 5)
+, et 0 si aucun bouton n’est selectionné
+sortie : entier entre 1 et 5 compris</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.clic_menu_couleur">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">clic_menu_couleur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_color_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_color_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.clic_menu_couleur" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une coordonée [x, y], deux entiers correspondants
+aux choix de couleur actuels
+effet : retourne la modification des boutons du menu_couleur
+selectionnés (entre 1 et 15)
+sortie : (num_color_1, num_color_2) modifiés</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.clic_robots_battle">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">clic_robots_battle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_robot1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_robot2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.clic_robots_battle" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une coordonée [x, y], deux entiers correspondants aux choix actuels
+effet : retourne la modification des boutons du menu_robots_battle selectionnés
+(entre 2 et 10)
+sortie : (num_robot1, num_robot2) modifiés</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.dim">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.dim" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : un plateau sous forme [H, V, C]
+effet : renvoie les dimensions du plateau
+sortie : tableau [dim_x, dim_y]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.dimension_menu">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">dimension_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.dimension_menu" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran
+effet : affiche le menu de choix de dimension
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.draw_arete">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">draw_arete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clignote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abscisse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordonnee</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.draw_arete" title="Lien vers cette définition">¶</a></dt>
+<dd><dl class="simple">
+<dt>entrée :</dt><dd><p>un booléen « clignote »,
+un plateau sous forme [H, V, C],
+3 entiers o, x, y
+une couleur</p>
+</dd>
+<dt>effet :</dt><dd><p>dessine une arête de couleur “couleur”
+et de coordonnées (“orientation”,”abcisse”,”ordonnee”)</p>
+</dd>
+</dl>
+<p>sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.draw_carre">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">draw_carre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abscisse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordonnee</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.draw_carre" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : un plateau sous forme [H, V, C], 2 entiers x, y et une couleur
+effet : dessine une arête de couleur “couleur”
+et de coordonnées (“orientation”,”abcisse”,”ordonnee”)</p>
+<blockquote>
+<div><p>compte un point pour chaque case colorié au joueur de la couleur “c”.</p>
+</div></blockquote>
+<p>sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.initialise_menu">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">initialise_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.initialise_menu" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran
+effet : affiche le menu principal, avec un fond de couleur “color”
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.le_plateau">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">le_plateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.le_plateau" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : deux dimensions entières : dim_x, dim_y
+effet : affiche un plateau vide de dimension dim_x * dim_y</p>
+<blockquote>
+<div><p>et met les compteurs de point à 0</p>
+</div></blockquote>
+<p>sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.menu_couleur">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">menu_couleur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.menu_couleur" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une couleur
+effet : affiche le menu de choix de couleurs,
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.menu_robot">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">menu_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.menu_robot" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une couleur
+effet : affiche le menu de choix de niveau de robots,
+les écritures de la couleur “color”
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.menu_robots_battle">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">menu_robots_battle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">screen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_fond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.menu_robots_battle" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : l’écran, une couleur
+effet : affiche le menu de choix de niveau de robots,
+version bataille de robots, avec les écritures de la couleur “color_1” et “color_2”
+sortie : ()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.affichage.reset">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.affichage.</span></span><span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.affichage.reset" title="Lien vers cette définition">¶</a></dt>
+<dd><p>entrée : une couleur de fond, la dimension du plateau
+effet : affiche à l’écran un plateau vide, et crée un tableau [H, V, C] rempli de 0
+sortie : un tableau [H, V, C]</p>
+</dd></dl>
+
+</section>
+<section id="module-dots_and_boxes.logger">
+<span id="logger"></span><h1>Logger<a class="headerlink" href="#module-dots_and_boxes.logger" title="Lien vers cette rubrique">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="dots_and_boxes.logger.setup_logger">
+<span class="sig-prename descclassname"><span class="pre">dots_and_boxes.logger.</span></span><span class="sig-name descname"><span class="pre">setup_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dots_and_boxes.logger.setup_logger" title="Lien vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="main">
+<h1>Main<a class="headerlink" href="#main" title="Lien vers cette rubrique">¶</a></h1>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">dots-and-boxes</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Antoine Dumont.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
