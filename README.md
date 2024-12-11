@@ -36,16 +36,39 @@ Avant de pouvoir exécuter ce projet, vous devez avoir installé :
 - **Python 3.11** ou une version compatible
 - **Poetry** (gestionnaire de dépendances Python)
 
-## Static Code Analysis
-Nous utilisons `Flake8` pour l'analyse statique du code et s'assurer de sa qualité.
+### Analyse statique du code
+## Outil utilisé : Flake8
 
-### Comment installer et lancer les analyses.
+L’analyse statique du code est réalisée à l’aide de l’outil Flake8, qui vérifie le respect des normes PEP 8 et détecte d’éventuelles erreurs dans le code.
 
-1. Installer les dépendances:
-   ```bash
-   pip install -r requirements.txt
+## Configuration
 
+Le fichier **.flake8** est situé à la racine du projet et contient la configuration suivante :
+```bash
+[flake8]
+max-line-length = 88
+ignore = E203, W503
+exclude = .git, __pycache__, venv, .venv
+```
 
+Ce fichier garantit que le code respecte les normes PEP 8, tout en ignorant certaines règles spécifiques pour des raisons de compatibilité avec les recommandations modernes.
+
+Lien vers la configuration : https://github.com/nashoba1er/dots-and-boxes/blob/main/.flake8
+
+## Installation de Flake8
+Pour installer Flake8, exécutez la commande suivante dans un terminal :
+```bash
+pip install flake8
+```
+
+## Exécution de l’analyse statique
+
+Pour analyser le code source avec Flake8, placez-vous à la racine du projet et exécutez la commande suivante :
+
+```bash
+flake8
+```
+Cette commande vérifie tous les fichiers Python du projet. Si des erreurs sont détectées, elles seront affichées dans le terminal avec les informations nécessaires pour les corriger.
 
 ## Installation et Execution
 1. Clonez ce dépôt :
