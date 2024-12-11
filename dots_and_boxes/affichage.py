@@ -36,7 +36,7 @@ Sommaire des fonctions d'affichage :
         )
 '''
 
-import logging
+from logger import logger
 from pygame import display, draw, font
 from time import sleep
 
@@ -98,7 +98,7 @@ def dim(plateau):
     sortie : tableau [dim_x, dim_y]
     """
     if plateau is None :
-        logging.critical("Échec du démarrage du jeu, vérifiez la configuration.")
+        logger.critical("Échec du démarrage du jeu, vérifiez la configuration.")
     return [len(plateau[1]), len(plateau[0][0])]
 
 
