@@ -20,6 +20,7 @@ Sommaire :
 
 """
 
+import logging
 from pygame import display, mixer, init, event
 from pygame import QUIT, MOUSEMOTION, MOUSEBUTTONDOWN, KEYDOWN, K_m, K_r, K_p
 from copy import deepcopy
@@ -313,7 +314,10 @@ pause = False
 tour_num = 0
 clignote = False
 
+if not run:
+    logging.error("Impossible de lancer le jeu")
 
+logging.info("Début de l'exécution de la boucle de jeu")
 while run:
     # boucle de menu :
     for pyEvent in event.get():
@@ -340,6 +344,7 @@ while run:
             joue = False
 
     # boucles de choix :
+    logging.debug("Début de l'exécution de la boucle de choix")
     while pvp :
         for pyEvent in event.get():
             if pyEvent.type == QUIT:
@@ -364,6 +369,7 @@ while run:
                     mode_pvp = True
         display.flip()
 
+    logging.info("Début de l'exécution de la boucle de choix")
     while pvr :
         for pyEvent in event.get():
             if pyEvent.type == QUIT:
@@ -384,6 +390,8 @@ while run:
                     display.flip()
 
                     # boucle de dimension
+                    logging.info(
+                        "Début de l'exécution de la boucle de choix des dimensions")
                     while dimension_boucle :
                         for pyEvent in event.get():
                             if pyEvent.type == QUIT:
@@ -414,6 +422,7 @@ while run:
                         display.flip()
         display.flip()
 
+    logging.info("Début de l'exécution de la boucle de choix")
     while rvr :
         for pyEvent in event.get():
             if pyEvent.type == QUIT:
@@ -436,6 +445,8 @@ while run:
                     display.flip()
 
                     # boucle de dimension
+                    logging.info(
+                        "Début de l'exécution de la boucle de choix des dimensions")
                     while dimension_boucle :
                         for pyEvent in event.get():
                             if pyEvent.type == QUIT:
@@ -447,6 +458,9 @@ while run:
                                 initialise_menu(screen, color_fond)
                                 dimension_boucle = False
                                 rvr = False
+                                logging.warning(
+                                    "L'utilisateur n'a pas sélectionné de dimension",
+                                    "il revient au menu")
                             if pyEvent.type == MOUSEMOTION:
                                 bouton_dimension_menu(
                                     screen, pyEvent.pos, choix_x, choix_y, color_fond)
@@ -465,6 +479,7 @@ while run:
                         display.flip()
         display.flip()
 
+    logging.info("Début de l'exécution de la boucle de choix des couleurs")
     while menu_color :
         for pyEvent in event.get():
             if pyEvent.type == QUIT:
@@ -474,6 +489,9 @@ while run:
             if pyEvent.type == KEYDOWN and pyEvent.key == K_m :
                 initialise_menu(screen, color_fond)
                 menu_color = False
+                logging.warning(
+                    "L'utilisateur n'a pas sélectionné de couleur",
+                    "la couleur par défaut sera utilisée.")
             if pyEvent.type == MOUSEMOTION:
                 bouton_menu_couleur(screen, pyEvent.pos, color_fond, choix_color_1)
             if pyEvent.type == MOUSEBUTTONDOWN:
@@ -488,7 +506,9 @@ while run:
                         choix_color_fond, choix_color_1, choix_color_2 = -1, -1, -1
                         initialise_menu(screen, color_fond)
         display.flip()
+
     # boucle de partie :
+    logging.info("Début de l'exécution de la boucle de la partie")
     while joue :
         if mode_pvp :
             for pyEvent in event.get():
