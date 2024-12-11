@@ -68,22 +68,39 @@ Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et
    ```
 ## Structure du projet
 ```bash
-├── README.md                       # Ce fichier
-├── dist                            # Dossier contenant les fichiers de distribution
-│   ├── dots_and_boxes-1.0.0-py3-none-any.whl
-│   └── dots_and_boxes-1.0.0.tar.gz
-├── dots_and_boxes                  # Code source du jeu
-│   ├── __init__.py
-│   ├── affichage.py
-│   ├── algos.py
-│   ├── fonctions_de_jeu.py
-│   ├── main.py
-│   └── logger.py 
-├── pyproject.toml                 # Configuration du projet (Poetry)
-├── poetry.lock                    # Verrouillage des dépendances
-└── tests                          # Tests du projet
-    ├── test_fonctions_de_jeu.py
-    └── test_algos.py
+.
+├── LICENCE.txt
+├── Makefile
+├── README.md
+├── build
+│   ├── _sources
+│   │   └── index.rst.txt
+│   ├── genindex.html
+│   ├── index.html
+│   ├── objects.inv
+│   ├── py-modindex.html
+│   ├── search.html
+│   └── searchindex.js
+├── dots_and_boxes
+│   ├── __init__.py
+│   ├── affichage.py
+│   ├── algos.py
+│   ├── fonctions_de_jeu.py
+│   ├── logger.py
+│   └── main.py
+├── make.bat
+├── poetry.lock
+├── pyproject.toml
+├── source
+│   ├── _static
+│   ├── _templates
+│   ├── conf.py
+│   ├── game.log
+│   └── index.rst
+└── tests
+    ├── __init__.py
+    ├── test_algos.py
+    └── test_fonctions_de_jeu.py
 ```
 
 ## Fichier `pyproject.toml`
@@ -214,6 +231,35 @@ poetry add sphinx sphinx-autodoc
 sphinx-build -b html docs/source/
 ```
 
+## Documentation
+
+Une documentation complète du projet a été générée avec **Sphinx**.
+
+### Contenu de la documentation
+
+La documentation inclut :
+
+    Une description des modules Python : `affichage`, `algos`, `fonctions_de_jeu`, `logger`, et `main`.
+    Une explication des fonctions, classes, et méthodes avec leurs paramètres et retours.
+    Des guides pour comprendre l'architecture du projet et les interactions entre ses composants.
+
+### Accéder à la documentation
+
+Pour consulter la documentation, ouvrez le fichier [index.html](https://github.com/Nashoba1er/dots-and-boxes/blob/main/build/index.html)
+
+### Recréer la documentation
+
+Si vous apportez des modifications au code et souhaitez mettre à jour la documentation :
+
+1. Assurez-vous que Sphinx est installé :
+```bash
+pip install sphinx
+```
+
+2. Naviguez dans le dossier `source` et utilisez la commande suivante :
+```bash
+sphinx-build -b html . ../build/
+```
 
 
 ## Auteurs et Licence 
@@ -222,5 +268,7 @@ sphinx-build -b html docs/source/
 
 Ce projet est sous licence MIT - voir le fichier [LICENSE](https://github.com/Nashoba1er/dots-and-boxes/blob/main/LICENCE.txt) pour plus de détails.
 
+### Auteurs
 
+Projet réalisé par Antoine Dumont
 
