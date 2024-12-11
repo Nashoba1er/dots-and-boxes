@@ -1,5 +1,18 @@
 # Dots and Boxes
 
+## README
+
+Ce fichier README contient une présentation complète du projet **Dots and Boxes**, incluant :
+
+- Une introduction et une description du jeu.
+- Les instructions d'installation et d'exécution.
+- La gestion des dépendances via Poetry.
+- L'analyse statique du code avec Flake8 et pre-commit.
+- Le système de logging du projet.
+- Les tests unitaires mis en place.
+
+Tout ce qui est nécessaire pour comprendre, installer et utiliser le projet y est détaillé.
+
 ## Introduction
 Ce projet utilise **Poetry** comme gestionnaire de dépendances et pour la gestion du packaging. Le jeu a été développé en Python et utilise la bibliothèque **pygame** pour la partie graphique.
 
@@ -69,6 +82,7 @@ Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et
 ├── pyproject.toml                 # Configuration du projet (Poetry)
 ├── poetry.lock                    # Verrouillage des dépendances
 └── tests                          # Tests du projet
+    ├── test_fonctions_de_jeu.py
     └── test_algos.py
 ```
 
