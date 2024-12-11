@@ -181,6 +181,12 @@ class TestFonctionsDeJeu(unittest.TestCase):
         self.assertEqual(carre([H,C,V], (0,0,255)), True)
 ```
 
+### Exécution des tests
+Pour exécuter les tests, utilisez la commande suivante dans le terminal :
+```bash
+python -m unittest tests/test_fonctions_de_jeu.py
+```
+
 
 ## Auteurs et Licence 
 Antoine Dumont
