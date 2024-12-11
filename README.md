@@ -158,6 +158,29 @@ Un fichier `logger.py` a été créé pour centraliser la configuration du logge
 
 la configuration du logger est dans le fichier `logger.py` : https://github.com/Nashoba1er/dots-and-boxes/blob/main/dots_and_boxes/logger.py
 
+## Tests unitaires
+
+Ce projet utilise des tests unitaires pour valider certaines fonctions essentielles. Les tests sont définis dans le dossier `tests/`, avec un fichier de test principal `test_fonctions_de_jeu.py` qui teste des fonctions spécifiques du module `fonctions_de_jeu.py`.
+
+### Exemples de tests unitaires
+
+Voici un extrait des tests réalisés pour la fonction `carré` :
+
+```python
+
+class TestFonctionsDeJeu(unittest.TestCase):
+
+    def test_carre(self):
+        [H,V,C] = [[[0,0,0],[0,0,0],[0,0,0]],
+                   [[0,0,0],[0,0,0],[0,0,0]],
+                   [[0,0],[0,0]]]
+        self.assertEqual(carre([H,C,V], (0,0,255)), False)
+        [H,V,C] = [[[1,1,0],[1,0,0],[0,0,0]],
+                   [[1,0,0],[0,0,0],[0,0,0]],
+                   [[0,0],[0,0]]]
+        self.assertEqual(carre([H,C,V], (0,0,255)), True)
+```
+
 
 ## Auteurs et Licence 
 Antoine Dumont
