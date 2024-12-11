@@ -64,7 +64,8 @@ Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et
 │   ├── affichage.py
 │   ├── algos.py
 │   ├── fonctions_de_jeu.py
-│   └── main.py
+│   ├── main.py
+│   └── logger.py 
 ├── pyproject.toml                 # Configuration du projet (Poetry)
 ├── poetry.lock                    # Verrouillage des dépendances
 └── tests                          # Tests du projet
@@ -140,6 +141,47 @@ git add .
 git commit -m "Test commit"
 
 ```
+
+## Logging dans le projet
+
+Le projet utilise un système de **logging** pour enregistrer les événements importants pendant l'exécution du jeu, afin de faciliter le débogage et la surveillance de l'application.
+
+### Configuration du Logger
+
+Un fichier `logger.py` a été créé pour centraliser la configuration du logger. Le logger est configuré avec les niveaux suivants :
+
+- **DEBUG** : pour les messages détaillés destinés au débogage.
+- **INFO** : pour les messages informatifs sur l'exécution normale du jeu.
+- **WARNING** : pour signaler des situations non idéales mais non critiques.
+- **ERROR** : pour des erreurs qui ne bloquent pas le programme.
+- **CRITICAL** : pour des erreurs graves qui peuvent empêcher l'exécution du jeu.
+
+Voici un extrait de la configuration du logger dans le fichier `logger.py` :
+
+```python
+# dots_and_boxes/logger.py
+import logging
+
+def setup_logger():
+    logger = logging.getLogger('dots_and_boxes')
+    logger.setLevel(logging.DEBUG)
+
+    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    formatter = logging.Formatter(log_format)
+
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+
+    file_handler = logging.FileHandler('game.log')
+    file_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+
+    return logger
+
+logger = setup_logger()
+
 
 ## Auteurs et Licence 
 Antoine Dumont
