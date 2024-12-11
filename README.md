@@ -226,13 +226,13 @@ Une documentation complète du projet a été générée avec **Sphinx**.
 
 La documentation inclut :
 
-    Une description des modules Python : `affichage`, `algos`, `fonctions_de_jeu`, `logger`, et `main`.
-    Une explication des fonctions, classes, et méthodes avec leurs paramètres et retours.
-    Des guides pour comprendre l'architecture du projet et les interactions entre ses composants.
+Une description des modules Python : `affichage`, `algos`, `fonctions_de_jeu`, `logger`, et `main`.
+Une explication des fonctions, classes, et méthodes avec leurs paramètres et retours.
+Des guides pour comprendre l'architecture du projet et les interactions entre ses composants.
 
 ### Accéder à la documentation
 
-Pour consulter la documentation, ouvrez le fichier [index.html](https://github.com/Nashoba1er/dots-and-boxes/blob/main/build/index.html)
+Pour consulter la documentation, téléchargez le fichier [index.html](https://github.com/Nashoba1er/dots-and-boxes/blob/main/build/index.html), et ouvrez le dans un navigateur.
 
 ### Recréer la documentation
 
