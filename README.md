@@ -218,19 +218,6 @@ Pour exécuter les tests, utilisez la commande suivante dans le terminal :
 python -m unittest tests/test_fonctions_de_jeu.py
 ```
 
-## Génération de la Documentation
-
-Le projet utilise **Sphinx** pour générer une documentation à partir des docstrings du code source. Pour générer la documentation en HTML, suivez ces étapes :
-
-1. Installez les dépendances :
-```bash
-poetry add sphinx sphinx-autodoc
-```
-2. Exécutez la commande pour générer la documentation :
-```bash
-sphinx-build -b html docs/source/
-```
-
 ## Documentation
 
 Une documentation complète du projet a été générée avec **Sphinx**.
