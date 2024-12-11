@@ -82,6 +82,7 @@ Ce projet utilise Poetry pour générer des fichiers de distribution (.tar.gz et
 ├── pyproject.toml                 # Configuration du projet (Poetry)
 ├── poetry.lock                    # Verrouillage des dépendances
 └── tests                          # Tests du projet
+    ├── test_fonctions_de_jeu.py
     └── test_algos.py
 ```
 
