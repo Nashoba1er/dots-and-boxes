@@ -36,12 +36,12 @@ Avant de pouvoir exécuter ce projet, vous devez avoir installé :
 - **Python 3.11** ou une version compatible
 - **Poetry** (gestionnaire de dépendances Python)
 
-### Analyse statique du code
-## Outil utilisé : Flake8
+## Analyse statique du code
+### Outil utilisé : Flake8
 
 L’analyse statique du code est réalisée à l’aide de l’outil Flake8, qui vérifie le respect des normes PEP 8 et détecte d’éventuelles erreurs dans le code.
 
-## Configuration
+### Configuration
 
 Le fichier **.flake8** est situé à la racine du projet et contient la configuration suivante :
 ```bash
@@ -55,13 +55,13 @@ Ce fichier garantit que le code respecte les normes PEP 8, tout en ignorant cert
 
 Lien vers la configuration : https://github.com/nashoba1er/dots-and-boxes/blob/main/.flake8
 
-## Installation de Flake8
+### Installation de Flake8
 Pour installer Flake8, exécutez la commande suivante dans un terminal :
 ```bash
 pip install flake8
 ```
 
-## Exécution de l’analyse statique
+### Exécution de l’analyse statique
 
 Pour analyser le code source avec Flake8, placez-vous à la racine du projet et exécutez la commande suivante :
 
