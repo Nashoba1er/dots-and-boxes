@@ -92,7 +92,7 @@ exclude = .git, __pycache__, venv, .venv
 
 Ce fichier garantit que le code respecte les normes PEP 8, tout en ignorant certaines règles spécifiques pour des raisons de compatibilité avec les recommandations modernes.
 
-Lien vers la configuration : https://github.com/nashoba1er/dots-and-boxes/blob/main/.flake8
+Lien vers la [configuration](https://github.com/nashoba1er/dots-and-boxes/blob/main/.flake8)
 
 ### Installation de Flake8
 Pour installer Flake8, exécutez la commande suivante dans un terminal :
@@ -123,7 +123,7 @@ repos:
       - id: flake8
 ```
 
-Lien vers la configuration : https://github.com/username/dots-and-boxes/blob/main/.pre-commit-config.yaml
+Lien vers la [configuration](https://github.com/username/dots-and-boxes/blob/main/.pre-commit-config.yaml)
 
 ### Installation
 
@@ -156,7 +156,7 @@ Un fichier `logger.py` a été créé pour centraliser la configuration du logge
 - **ERROR** : pour des erreurs qui ne bloquent pas le programme.
 - **CRITICAL** : pour des erreurs graves qui peuvent empêcher l'exécution du jeu.
 
-la configuration du logger est dans le fichier `logger.py` : https://github.com/Nashoba1er/dots-and-boxes/blob/main/dots_and_boxes/logger.py
+la configuration du logger est dans le fichier  [`logger.py`](https://github.com/Nashoba1er/dots-and-boxes/blob/main/dots_and_boxes/logger.py)
 
 ## Tests unitaires
 
@@ -189,4 +189,10 @@ python -m unittest tests/test_fonctions_de_jeu.py
 
 
 ## Auteurs et Licence 
-Antoine Dumont
+
+### Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](https://github.com/Nashoba1er/dots-and-boxes/blob/main/LICENCE.txt) pour plus de détails.
+
+
+
