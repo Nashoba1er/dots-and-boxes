@@ -19,13 +19,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Utiliser la dernière version stable de l'action checkout
 
     # Installer Poetry
     - name: Set up Poetry
-      uses: python-actions/setup-poetry@v2
-      with:
-        python-version: ${{ matrix.python-version }}  # Installe la version de Python de la matrice
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install poetry
 
     # Installer les dépendances avec Poetry
     - name: Install dependencies
@@ -43,13 +43,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Utiliser la dernière version stable de l'action checkout
 
     # Installer Poetry et Flake8
     - name: Set up Poetry
-      uses: python-actions/setup-poetry@v2
-      with:
-        python-version: 3.11  # Utilise la version 3.11 pour l'analyse statique
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install poetry
 
     - name: Install dependencies and Flake8
       run: |
@@ -67,7 +67,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Utiliser la dernière version stable de l'action checkout
 
     - name: Install Git Secrets
       run: |
