@@ -61,23 +61,21 @@ jobs:
       run: |
         poetry run flake8 .  # Lancer Flake8 sur tout le projet
 
-# Job pour vérifier la présence de secrets dans le code
-git-secrets:
-  runs-on: ubuntu-latest
+  # Job pour vérifier la présence de secrets dans le code
+  git-secrets:
+    runs-on: ubuntu-latest  # Utilise un environnement Ubuntu
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-  steps:
-  - name: Checkout code
-    uses: actions/checkout@v3  # Utiliser la dernière version stable de l'action checkout
+    - name: Install Git Secrets
+      run: |
+        sudo apt-get install -y git-secrets
+        git secrets --register-aws
+        git secrets --install
 
-  - name: Install Git Secrets
-    run: |
-      sudo apt-get install -y git-secrets
-      git secrets --register-aws
-      git secrets --install
-
-  - name: Run Git Secrets
-    run: |
-      export TERM=xterm  # Définir la variable $TERM pour éviter les erreurs de terminal
-      git secrets --scan  # Vérifier la présence de secrets dans les commits
-    continue-on-error: true  # Ignorer les erreurs liées à "say" et "$TERM"
-
+    - name: Run Git Secrets
+      run: |
+        export TERM=xterm  # Définir la variable $TERM pour éviter les erreurs de terminal
+        git secrets --scan  # Vérifier la présence de secrets dans les commits
+      continue-on-error: true  # Ignorer les erreurs liées à "say" et "$TERM"
