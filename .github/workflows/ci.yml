@@ -23,11 +23,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # 2. Installer Poetry (utilisation de l'action correcte)
+    # 2. Installer Poetry via l'action correcte
     - name: Set up Poetry
-      uses: poetry-action/setup-poetry@v2  # Utiliser l'action correcte pour installer Poetry
+      uses: python-poetry/action@v2  # Utilisation de l'action correcte
       with:
-        poetry-version: "1.8"  # Spécifie la version de Poetry si nécessaire
+        poetry-version: "1.8"  # Tu peux spécifier la version de Poetry si nécessaire
 
     # 3. Installer les dépendances avec Poetry
     - name: Install dependencies
@@ -48,9 +48,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # 2. Installer Poetry et Flake8 (utilisation de l'action correcte pour Poetry)
+    # 2. Installer Poetry et Flake8 via l'action correcte
     - name: Set up Poetry
-      uses: poetry-action/setup-poetry@v2  # Utilisation de l'action correcte pour installer Poetry
+      uses: python-poetry/action@v2  # Utilisation de l'action correcte pour installer Poetry
       with:
         poetry-version: "1.8"  # Spécifie la version de Poetry si nécessaire
 
