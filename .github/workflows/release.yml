@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  # Déclenchement lors de la création d'un tag
+  push:
+    tags:
+      - 'v*'  # Se déclenche pour tout tag commençant par "v"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Installer Poetry et dépendances
+    - name: Set up Poetry
+      uses: python-actions/setup-poetry@v2
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        poetry install
+
+    # Exécuter les tests unitaires
+    - name: Run unit tests
+      run: |
+        poetry run python -m unittest discover
+
+    # Générer le changelog à partir des commits
+    - name: Generate changelog
+      run: |
+        # Nous allons utiliser un outil comme github-changelog-generator pour générer un changelog
+        gem install github_changelog_generator
+        github_changelog_generator --unreleased --since-tag=${GITHUB_REF#refs/tags/} --output changelog.md
+
+    # Créer la release et publier les artefacts
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          changelog.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilise le token GitHub pour créer une release
