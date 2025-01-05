@@ -25,7 +25,7 @@ jobs:
 
     # 2. Installer Poetry via l'action correcte
     - name: Set up Poetry
-      uses: python-poetry/action@v2  # Utilisation de l'action correcte
+      uses: poetry-action/setup-poetry@v1  # Utilisation de l'action correcte
       with:
         poetry-version: "1.8"  # Tu peux spécifier la version de Poetry si nécessaire
 
@@ -50,7 +50,7 @@ jobs:
 
     # 2. Installer Poetry et Flake8 via l'action correcte
     - name: Set up Poetry
-      uses: python-poetry/action@v2  # Utilisation de l'action correcte pour installer Poetry
+      uses: poetry-action/setup-poetry@v1  # Utilisation de l'action correcte pour installer Poetry
       with:
         poetry-version: "1.8"  # Spécifie la version de Poetry si nécessaire
 
