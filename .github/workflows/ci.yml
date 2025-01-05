@@ -29,12 +29,17 @@ jobs:
         python -m pip install --upgrade pip  # Met à jour pip
         python -m pip install poetry  # Installe Poetry via pip
 
-    # 3. Installer les dépendances avec Poetry
+    # 3. Mettre à jour le fichier poetry.lock
+    - name: Update poetry.lock
+      run: |
+        poetry lock  # Met à jour le fichier poetry.lock
+
+    # 4. Installer les dépendances avec Poetry
     - name: Install dependencies
       run: |
         poetry install
 
-    # 4. Exécuter les tests unitaires
+    # 5. Exécuter les tests unitaires
     - name: Run unit tests
       run: |
         poetry run python -m unittest discover  # Exécuter les tests dans le répertoire "tests"

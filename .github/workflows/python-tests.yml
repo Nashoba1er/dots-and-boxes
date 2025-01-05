@@ -29,6 +29,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip  # Met à jour pip
         python -m pip install poetry  # Installe Poetry
+        poetry lock  # Met à jour poetry.lock
         poetry install
 
     - name: Run Flake8
