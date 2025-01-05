@@ -1,4 +1,4 @@
-'''
+"""
 Sommaire des fonctions d'affichage :
     - définition des couleurs
     - définition de l'écran
@@ -34,11 +34,12 @@ Sommaire des fonctions d'affichage :
             num_color_1,
             num_color_2
         )
-'''
+"""
+
+from time import sleep
 
 from logger import logger
 from pygame import display, draw, font
-from time import sleep
 
 # couleurs
 
@@ -97,7 +98,7 @@ def dim(plateau):
     effet : renvoie les dimensions du plateau
     sortie : tableau [dim_x, dim_y]
     """
-    if plateau is None :
+    if plateau is None:
         logger.critical("Échec du démarrage du jeu, vérifiez la configuration.")
     return [len(plateau[1]), len(plateau[0][0])]
 
@@ -110,18 +111,18 @@ def le_plateau(dim_x, dim_y):
     sortie : ()
     """
     radius = 5
-    if width / (dim_x + 1) < height / (dim_y + 1) :
+    if width / (dim_x + 1) < height / (dim_y + 1):
         interval = width / (dim_x + 1)
-    else :
+    else:
         interval = height / (dim_y + 1)
 
-    if dim_x < dim_y :
+    if dim_x < dim_y:
         debuty = interval
         debutx = width / dim_x
-    elif dim_y < dim_x :
+    elif dim_y < dim_x:
         debutx = interval
         debuty = height / dim_y
-    else :
+    else:
         debutx = interval
         debuty = interval
 
@@ -169,56 +170,80 @@ def draw_arete(clignote, plateau, orientation, abscisse, ordonnee, couleur):
     """
     dim_x, dim_y = dim(plateau)
 
-    if width / (dim_x + 1) < height / (dim_y + 1) :
+    if width / (dim_x + 1) < height / (dim_y + 1):
         interval = width / (dim_x + 1)
-    else :
+    else:
         interval = height / (dim_y + 1)
 
-    if dim_x < dim_y :
+    if dim_x < dim_y:
         debuty = interval
         debutx = width / dim_x
-    elif dim_y < dim_x :
+    elif dim_y < dim_x:
         debutx = interval
         debuty = height / dim_y
-    else :
+    else:
         debutx = interval
         debuty = interval
     i = abscisse
     j = ordonnee
-    if orientation == 0 :  # arrête horizontale :
-        draw.line(screen, couleur,
-                  (debutx + i * interval, debuty + j * interval),
-                  (debutx + (i + 1) * interval, debuty + j * interval), 5)
-        if clignote :
+    if orientation == 0:  # arrête horizontale :
+        draw.line(
+            screen,
+            couleur,
+            (debutx + i * interval, debuty + j * interval),
+            (debutx + (i + 1) * interval, debuty + j * interval),
+            5,
+        )
+        if clignote:
             display.flip()
             for _ in range(3):
                 sleep(0.1)
-                draw.line(screen, WHITE,
-                          (debutx + i * interval, debuty + j * interval),
-                          (debutx + (i + 1) * interval, debuty + j * interval), 5)
+                draw.line(
+                    screen,
+                    WHITE,
+                    (debutx + i * interval, debuty + j * interval),
+                    (debutx + (i + 1) * interval, debuty + j * interval),
+                    5,
+                )
                 display.flip()
                 sleep(0.1)
-                draw.line(screen, couleur,
-                          (debutx + i * interval, debuty + j * interval),
-                          (debutx + (i + 1) * interval, debuty + j * interval), 5)
+                draw.line(
+                    screen,
+                    couleur,
+                    (debutx + i * interval, debuty + j * interval),
+                    (debutx + (i + 1) * interval, debuty + j * interval),
+                    5,
+                )
                 display.flip()
 
-    else :  # arrête verticale :
-        draw.line(screen, couleur,
-                  (debutx + i * interval, debuty + j * interval),
-                  (debutx + i * interval, debuty + (j + 1) * interval), 5)
-        if clignote :
+    else:  # arrête verticale :
+        draw.line(
+            screen,
+            couleur,
+            (debutx + i * interval, debuty + j * interval),
+            (debutx + i * interval, debuty + (j + 1) * interval),
+            5,
+        )
+        if clignote:
             display.flip()
             for _ in range(3):
                 sleep(0.1)
-                draw.line(screen, WHITE,
-                          (debutx + i * interval, debuty + j * interval),
-                          (debutx + i * interval, debuty + (j + 1) * interval), 5)
+                draw.line(
+                    screen,
+                    WHITE,
+                    (debutx + i * interval, debuty + j * interval),
+                    (debutx + i * interval, debuty + (j + 1) * interval),
+                    5,
+                )
                 display.flip()
                 sleep(0.1)
-                draw.line(screen, couleur,
-                          (debutx + i * interval, debuty + j * interval),
-                          (debutx + i * interval, debuty + (j + 1) * interval), 5)
+                draw.line(
+                    screen,
+                    couleur,
+                    (debutx + i * interval, debuty + j * interval),
+                    (debutx + i * interval, debuty + (j + 1) * interval),
+                    5,
+                )
                 display.flip()
 
 
@@ -232,24 +257,28 @@ def draw_carre(plateau, abscisse, ordonnee, couleur):
     """
     dim_x, dim_y = dim(plateau)
 
-    if width / (dim_x + 1) < height / (dim_y + 1) :
+    if width / (dim_x + 1) < height / (dim_y + 1):
         interval = width / (dim_x + 1)
-    else :
+    else:
         interval = height / (dim_y + 1)
 
-    if dim_x < dim_y :
+    if dim_x < dim_y:
         debuty = interval
         debutx = width / dim_x
-    elif dim_y < dim_x :
+    elif dim_y < dim_x:
         debutx = interval
         debuty = height / dim_y
-    else :
+    else:
         debutx = interval
         debuty = interval
     i = abscisse
     j = ordonnee
-    draw.rect(screen, couleur,
-              [debutx + i * interval, debuty + j * interval, interval, interval], 0)
+    draw.rect(
+        screen,
+        couleur,
+        [debutx + i * interval, debuty + j * interval, interval, interval],
+        0,
+    )
 
     # if couleur == color_1 :
     #    points_j1 = points_j1  + 1
@@ -294,8 +323,9 @@ def initialise_menu(screen, color):
     # affichage
     screen.fill(color)
     screen.blit(question1_rendu, position_question1)  # texte début de question
-    screen.blit(question1_suite_rendu,
-                position_question1_suite)  # texte fin de question
+    screen.blit(
+        question1_suite_rendu, position_question1_suite
+    )  # texte fin de question
     screen.blit(pvp_texte_rendu, position_pvp_text)  # texte pvp
     screen.blit(pvr_texte_rendu, position_pvr_text)  # texte pvr
     screen.blit(rvr_texte_rendu, position_rvr_text)  # texte rvr
@@ -313,24 +343,26 @@ def bouton_main_menu(screen, coord, color_fond):
     sortie : ()
     """
     ecart = 6
-    if coord[0] <= 400 + ecart and coord[0] >= 400 - ecart :
+    if coord[0] <= 400 + ecart and coord[0] >= 400 - ecart:
         if coord[1] <= 250 + ecart and coord[1] >= 250 - ecart:
             draw.circle(screen, WHITE, [400, 250], 8)  # bouton pvp
         elif coord[1] <= 350 + ecart and coord[1] >= 350 - ecart:
             draw.circle(screen, WHITE, [400, 350], 8)  # bouton pvr
         elif coord[1] <= 450 + ecart and coord[1] >= 450 - ecart:
             draw.circle(screen, WHITE, [400, 450], 8)  # bouton rvr
-        else :
+        else:
             draw.circle(screen, color_fond, [400, 250], 8)  # bouton pvp
             draw.circle(screen, color_fond, [400, 350], 8)  # bouton pvr
             draw.circle(screen, color_fond, [400, 450], 8)  # bouton rvr
             draw.circle(screen, color_fond, [150, 550], 8)  # bouton color
-    elif (coord[0] <= 150 + ecart
-            and coord[0] >= 150 - ecart
-            and coord[1] <= 550 + ecart
-            and coord[1] >= 550 - ecart):
+    elif (
+        coord[0] <= 150 + ecart
+        and coord[0] >= 150 - ecart
+        and coord[1] <= 550 + ecart
+        and coord[1] >= 550 - ecart
+    ):
         draw.circle(screen, WHITE, [150, 550], 8)  # bouton color
-    else :
+    else:
         draw.circle(screen, color_fond, [400, 250], 8)  # bouton pvp
         draw.circle(screen, color_fond, [400, 350], 8)  # bouton pvr
         draw.circle(screen, color_fond, [400, 450], 8)  # bouton rvr
@@ -345,19 +377,21 @@ def clic_bouton(coord):
     sortie : un entier entre 0 et 3 compris
     """
     ecart = 6
-    if coord[0] <= 400 + ecart and coord[0] >= 400 - ecart :
+    if coord[0] <= 400 + ecart and coord[0] >= 400 - ecart:
         if coord[1] <= 250 + ecart and coord[1] >= 250 - ecart:
             return 1
         elif coord[1] <= 350 + ecart and coord[1] >= 350 - ecart:
             return 2
         elif coord[1] <= 450 + ecart and coord[1] >= 450 - ecart:
             return 3
-    elif (coord[0] <= 150 + ecart
-          and coord[0] >= 150 - ecart
-          and coord[1] <= 550 + ecart
-          and coord[1] >= 550 - ecart):
+    elif (
+        coord[0] <= 150 + ecart
+        and coord[0] >= 150 - ecart
+        and coord[1] <= 550 + ecart
+        and coord[1] >= 550 - ecart
+    ):
         return 4
-    else :
+    else:
         return 0
 
 
@@ -375,10 +409,20 @@ def dimension_menu(screen, color_fond):
     question = "Quelles dimensions voulez-vous ?"
     dimension_x = "Nombre de colonnes"
     dimension_y = "Nombre de lignes"
-    x2, x3, x4, x5 = "2" , "3" , "4" , "5"
-    x6, x7, x8, x9, x10 = "6" , "7" , "8" , "9" , "10"
-    y2, y3, y4, y5, = "2" , "3" , "4" , "5"
-    y6, y7, y8, y9, y10 = "6" , "7" , "8" , "9" , "10"
+    x2, x3, x4, x5 = "2", "3", "4", "5"
+    x6, x7, x8, x9, x10 = "6", "7", "8", "9", "10"
+    (
+        y2,
+        y3,
+        y4,
+        y5,
+    ) = (
+        "2",
+        "3",
+        "4",
+        "5",
+    )
+    y6, y7, y8, y9, y10 = "6", "7", "8", "9", "10"
 
     # Rendu du texte avec la police choisie
     question_rendu = police.render(question, True, (255, 255, 255))
@@ -467,21 +511,23 @@ def bouton_dimension_menu(screen, coord, choix_x, choix_y, color_fond):
     test = False
     for i in range(9):
         if (coord[0] <= 200 + 6) and (coord[0] >= 200 - 6):
-            if ((coord[1] <= 200 + 40 * i + 6) and (coord[1] >= 200 + 40 * i - 6)):
+            if (coord[1] <= 200 + 40 * i + 6) and (coord[1] >= 200 + 40 * i - 6):
                 draw.circle(screen, WHITE, [200, 200 + 40 * i], 6)  # bouton x(i + 2)
                 test = True
-        if (coord[0] <= 500 + 6 and coord[0] >= 500 - 6):
-            if (coord[1] <= 200 + 40 * i + 6 and coord[1] >= 200 + 40 * i - 6):
+        if coord[0] <= 500 + 6 and coord[0] >= 500 - 6:
+            if coord[1] <= 200 + 40 * i + 6 and coord[1] >= 200 + 40 * i - 6:
                 draw.circle(screen, WHITE, [500, 200 + 40 * i], 6)  # bouton y(i + 2)
                 test = True
     if not test:
         for i in range(9):
-            if i + 2 != choix_x :
-                draw.circle(screen, color_fond,
-                            [200, 200 + 40 * i], 6)  # bouton x(i + 2)
-            if i + 2 != choix_y :
-                draw.circle(screen, color_fond,
-                            [500, 200 + 40 * i], 6)  # bouton y(i + 2)
+            if i + 2 != choix_x:
+                draw.circle(
+                    screen, color_fond, [200, 200 + 40 * i], 6
+                )  # bouton x(i + 2)
+            if i + 2 != choix_y:
+                draw.circle(
+                    screen, color_fond, [500, 200 + 40 * i], 6
+                )  # bouton y(i + 2)
 
 
 def clic_bouton_dimension(coord, choix_x, choix_y):
@@ -493,11 +539,11 @@ def clic_bouton_dimension(coord, choix_x, choix_y):
     """
     ecart = 10
     for i in range(9):
-        if (coord[1] <= 200 + 40 * i + ecart and coord[1] >= 200 + 40 * i - ecart):
-            if (coord[0] <= 200 + ecart and coord[0] >= 200 - ecart):
+        if coord[1] <= 200 + 40 * i + ecart and coord[1] >= 200 + 40 * i - ecart:
+            if coord[0] <= 200 + ecart and coord[0] >= 200 - ecart:
                 choix_x = i + 2
-        if (coord[1] <= 200 + 40 * i + ecart and coord[1] >= 200 + 40 * i - ecart):
-            if (coord[0] <= 500 + ecart and coord[0] >= 500 - ecart):
+        if coord[1] <= 200 + 40 * i + ecart and coord[1] >= 200 + 40 * i - ecart:
+            if coord[0] <= 500 + ecart and coord[0] >= 500 - ecart:
                 choix_y = i + 2
     return (choix_x, choix_y)
 
@@ -563,10 +609,10 @@ def bouton_menu_robots(screen, coord, color_fond):
     """
     ecart = 7
     for i in range(6):
-        if (coord[0] <= 400 + ecart and coord[0] >= 400 - ecart):
-            if (coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart):
+        if coord[0] <= 400 + ecart and coord[0] >= 400 - ecart:
+            if coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart:
                 draw.circle(screen, WHITE, [400, 130 + i * 75], 10)  # bouton robot i
-        else :
+        else:
             draw.circle(screen, color_fond, [400, 130 + i * 75], 10)  # bouton robot i
 
 
@@ -580,8 +626,8 @@ def clic_bouton_robot(coord):
     num = -1
     ecart = 10
     for i in range(6):
-        if (coord[0] <= 400 + ecart and coord[0] >= 400 - ecart):
-            if (coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart):
+        if coord[0] <= 400 + ecart and coord[0] >= 400 - ecart:
+            if coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart:
                 num = i
     return num
 
@@ -670,20 +716,20 @@ def bouton_robots_battle(screen, coord, num_robot1, num_robot2, color_fond):
     """
     ecart = 7
     for i in range(6):
-        if (coord[0] <= 250 + ecart and coord[0] >= 250 - ecart):
-            if (coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart):
+        if coord[0] <= 250 + ecart and coord[0] >= 250 - ecart:
+            if coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart:
                 draw.circle(screen, WHITE, [250, 130 + i * 75], 10)  # bouton robot i
-        elif (i == num_robot1):
+        elif i == num_robot1:
             draw.circle(screen, WHITE, [250, 130 + i * 75], 10)  # bouton robot i
-        else :
+        else:
             draw.circle(screen, color_fond, [250, 130 + i * 75], 10)  # bouton robot i
 
-        if (coord[0] <= 350 + ecart and coord[0] >= 350 - ecart):
-            if (coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart):
+        if coord[0] <= 350 + ecart and coord[0] >= 350 - ecart:
+            if coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart:
                 draw.circle(screen, WHITE, [350, 130 + i * 75], 10)  # bouton robot i
-            elif (i == num_robot2):
+            elif i == num_robot2:
                 draw.circle(screen, WHITE, [350, 130 + i * 75], 10)  # bouton robot i
-        else :
+        else:
             draw.circle(screen, color_fond, [350, 130 + i * 75], 10)  # bouton robot i
 
 
@@ -696,11 +742,11 @@ def clic_robots_battle(screen, coord, num_robot1, num_robot2):
     """
     ecart = 10
     for i in range(6):
-        if (coord[0] <= 250 + ecart and coord[0] >= 250 - ecart):
-            if (coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart):
+        if coord[0] <= 250 + ecart and coord[0] >= 250 - ecart:
+            if coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart:
                 num_robot1 = i
-        if (coord[0] <= 350 + ecart and coord[0] >= 350 - ecart):
-            if (coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart):
+        if coord[0] <= 350 + ecart and coord[0] >= 350 - ecart:
+            if coord[1] <= 130 + 75 * i + ecart and coord[1] >= 130 + 75 * i - ecart:
                 num_robot2 = i
     return (num_robot1, num_robot2)
 
@@ -742,66 +788,127 @@ def menu_couleur(screen, color_fond):
     coté_carré = 50
 
     # couleur fond
-    draw.rect(screen, C1_BLUE,
-              [intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-    draw.rect(screen, PINK,
-              [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-    draw.rect(screen, GRIS_CLAIR,
-              [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-    draw.rect(screen, SAUGE_LOANN,
-              [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-    draw.rect(screen, ROSE_CLAIR,
-              [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
+    draw.rect(
+        screen, C1_BLUE, [intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen, PINK, [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen,
+        GRIS_CLAIR,
+        [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+        0,
+    )
+    draw.rect(
+        screen,
+        SAUGE_LOANN,
+        [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+        0,
+    )
+    draw.rect(
+        screen,
+        ROSE_CLAIR,
+        [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+        0,
+    )
 
-    if color_fond == C1_BLUE :
-        draw.rect(screen, BLACK,
-                  [intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2)
-    elif color_fond == PINK :
-        draw.rect(screen, BLACK,
-                  [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2)
-    elif color_fond == GRIS_CLAIR :
-        draw.rect(screen, BLACK,
-                  [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2)
-    elif color_fond == SAUGE_LOANN :
-        draw.rect(screen, BLACK,
-                  [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2)
-    elif color_fond == ROSE_CLAIR :
-        draw.rect(screen, BLACK,
-                  [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2)
+    if color_fond == C1_BLUE:
+        draw.rect(
+            screen, BLACK, [intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2
+        )
+    elif color_fond == PINK:
+        draw.rect(
+            screen,
+            BLACK,
+            [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            2,
+        )
+    elif color_fond == GRIS_CLAIR:
+        draw.rect(
+            screen,
+            BLACK,
+            [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            2,
+        )
+    elif color_fond == SAUGE_LOANN:
+        draw.rect(
+            screen,
+            BLACK,
+            [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            2,
+        )
+    elif color_fond == ROSE_CLAIR:
+        draw.rect(
+            screen,
+            BLACK,
+            [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            2,
+        )
 
     # couleur J1 :
-    draw.rect(screen, VERT,
-              [intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0)
-    draw.rect(screen, BLEU_JOLI,
-              [2 * intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0)
-    draw.rect(screen, GRAY,
-              [3 * intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0)
-    draw.rect(screen, bgColor,
-              [4 * intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0)
-    draw.rect(screen, PINK2,
-              [5 * intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0)
+    draw.rect(
+        screen, VERT, [intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen,
+        BLEU_JOLI,
+        [2 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+        0,
+    )
+    draw.rect(
+        screen, GRAY, [3 * intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen,
+        bgColor,
+        [4 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+        0,
+    )
+    draw.rect(
+        screen, PINK2, [5 * intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0
+    )
 
-    draw.rect(screen, ROSE_FONCE,
-              [intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0)
-    draw.rect(screen, VIOLET_FONCE,
-              [2 * intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0)
-    draw.rect(screen, ROSE_POUDREE,
-              [3 * intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0)
-    draw.rect(screen, BLEU,
-              [4 * intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0)
-    draw.rect(screen, BLEU_FONCE,
-              [5 * intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0)
+    draw.rect(
+        screen, ROSE_FONCE, [intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen,
+        VIOLET_FONCE,
+        [2 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+        0,
+    )
+    draw.rect(
+        screen,
+        ROSE_POUDREE,
+        [3 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+        0,
+    )
+    draw.rect(
+        screen, BLEU, [4 * intervale + coté_carré / 2, 400, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen,
+        BLEU_FONCE,
+        [5 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+        0,
+    )
 
-    draw.rect(screen, JAUNE,
-              [intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0)
-    draw.rect(screen, ORANGE,
-              [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0)
-    draw.rect(screen, ROUGE,
-              [3 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0)
-    draw.rect(screen, MARRON,
-              [4 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0)
-    draw.rect(screen, BLACK,
-              [5 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0)
+    draw.rect(
+        screen, JAUNE, [intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen, ORANGE, [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen, ROUGE, [3 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen, MARRON, [4 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0
+    )
+    draw.rect(
+        screen, BLACK, [5 * intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0
+    )
 
 
 def bouton_menu_couleur(screen, coord, color_fond, choix_color_1):
@@ -818,282 +925,625 @@ def bouton_menu_couleur(screen, coord, color_fond, choix_color_1):
     num = 0
     num_col = -1
 
-    if color_fond == C1_BLUE :
+    if color_fond == C1_BLUE:
         num_color_fond = 1
-    elif color_fond == PINK :
+    elif color_fond == PINK:
         num_color_fond = 2
-    elif color_fond == GRIS_CLAIR :
+    elif color_fond == GRIS_CLAIR:
         num_color_fond = 3
-    elif color_fond == SAUGE_LOANN :
+    elif color_fond == SAUGE_LOANN:
         num_color_fond = 4
-    elif color_fond == ROSE_CLAIR :
+    elif color_fond == ROSE_CLAIR:
         num_color_fond = 5
 
-    if (coord[1] <= 100 + coté_carré / 2 + ecart):
-        if (coord[1] >= 100 + coté_carré / 2 - ecart) :
+    if coord[1] <= 100 + coté_carré / 2 + ecart:
+        if coord[1] >= 100 + coté_carré / 2 - ecart:
             for i in range(1, 6):
-                if (coord[0] <= i * intervale + coté_carré + ecart):
-                    if (coord[0] >= i * intervale + coté_carré - ecart) :
-                        draw.rect(screen, WHITE,
-                                  [i * intervale + coté_carré / 2, 100,
-                                   coté_carré, coté_carré], 2)
+                if coord[0] <= i * intervale + coté_carré + ecart:
+                    if coord[0] >= i * intervale + coté_carré - ecart:
+                        draw.rect(
+                            screen,
+                            WHITE,
+                            [
+                                i * intervale + coté_carré / 2,
+                                100,
+                                coté_carré,
+                                coté_carré,
+                            ],
+                            2,
+                        )
                         num = i
 
-        if num != 1 :
-            draw.rect(screen, C1_BLUE,
-                      [intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-        if num != 2 :
-            draw.rect(screen, PINK,
-                      [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-        if num != 3 :
-            draw.rect(screen, GRIS_CLAIR,
-                      [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-        if num != 4 :
-            draw.rect(screen, SAUGE_LOANN,
-                      [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-        if num != 5 :
-            draw.rect(screen, ROSE_CLAIR,
-                      [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré], 0)
-        if num != num_color_fond :
-            if color_fond == C1_BLUE :
-                draw.rect(screen, BLACK,
-                          [intervale + coté_carré / 2, 100, coté_carré, coté_carré], 2)
-            elif color_fond == PINK :
-                draw.rect(screen, BLACK, [2 * intervale + coté_carré / 2,
-                                          100, coté_carré, coté_carré], 2)
-            elif color_fond == GRIS_CLAIR :
-                draw.rect(screen, BLACK, [3 * intervale + coté_carré / 2,
-                                          100, coté_carré, coté_carré], 2)
-            elif color_fond == SAUGE_LOANN :
-                draw.rect(screen, BLACK, [4 * intervale + coté_carré / 2,
-                                          100, coté_carré, coté_carré], 2)
-            elif color_fond == ROSE_CLAIR :
-                draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                          100, coté_carré, coté_carré], 2)
-    else :
-        draw.rect(screen, C1_BLUE, [intervale + coté_carré / 2,
-                                    100, coté_carré, coté_carré], 0)
-        draw.rect(screen, PINK, [2 * intervale + coté_carré / 2,
-                                 100, coté_carré, coté_carré], 0)
-        draw.rect(screen, GRIS_CLAIR, [3 * intervale + coté_carré / 2,
-                                       100, coté_carré, coté_carré], 0)
-        draw.rect(screen, SAUGE_LOANN, [4 * intervale + coté_carré / 2,
-                                        100, coté_carré, coté_carré], 0)
-        draw.rect(screen, ROSE_CLAIR, [5 * intervale + coté_carré / 2,
-                                       100, coté_carré, coté_carré], 0)
-        if color_fond == C1_BLUE :
-            draw.rect(screen, BLACK, [intervale + coté_carré / 2,
-                                      100, coté_carré, coté_carré], 2)
-        elif color_fond == PINK :
-            draw.rect(screen, BLACK, [2 * intervale + coté_carré / 2,
-                                      100, coté_carré, coté_carré], 2)
-        elif color_fond == GRIS_CLAIR :
-            draw.rect(screen, BLACK, [3 * intervale + coté_carré / 2,
-                                      100, coté_carré, coté_carré], 2)
-        elif color_fond == SAUGE_LOANN :
-            draw.rect(screen, BLACK, [4 * intervale + coté_carré / 2,
-                                      100, coté_carré, coté_carré], 2)
-        elif color_fond == ROSE_CLAIR :
-            draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                      100, coté_carré, coté_carré], 2)
+        if num != 1:
+            draw.rect(
+                screen,
+                C1_BLUE,
+                [intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                0,
+            )
+        if num != 2:
+            draw.rect(
+                screen,
+                PINK,
+                [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                0,
+            )
+        if num != 3:
+            draw.rect(
+                screen,
+                GRIS_CLAIR,
+                [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                0,
+            )
+        if num != 4:
+            draw.rect(
+                screen,
+                SAUGE_LOANN,
+                [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                0,
+            )
+        if num != 5:
+            draw.rect(
+                screen,
+                ROSE_CLAIR,
+                [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                0,
+            )
+        if num != num_color_fond:
+            if color_fond == C1_BLUE:
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                    2,
+                )
+            elif color_fond == PINK:
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                    2,
+                )
+            elif color_fond == GRIS_CLAIR:
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                    2,
+                )
+            elif color_fond == SAUGE_LOANN:
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                    2,
+                )
+            elif color_fond == ROSE_CLAIR:
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                    2,
+                )
+    else:
+        draw.rect(
+            screen,
+            C1_BLUE,
+            [intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            PINK,
+            [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            GRIS_CLAIR,
+            [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            SAUGE_LOANN,
+            [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            ROSE_CLAIR,
+            [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+            0,
+        )
+        if color_fond == C1_BLUE:
+            draw.rect(
+                screen,
+                BLACK,
+                [intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                2,
+            )
+        elif color_fond == PINK:
+            draw.rect(
+                screen,
+                BLACK,
+                [2 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                2,
+            )
+        elif color_fond == GRIS_CLAIR:
+            draw.rect(
+                screen,
+                BLACK,
+                [3 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                2,
+            )
+        elif color_fond == SAUGE_LOANN:
+            draw.rect(
+                screen,
+                BLACK,
+                [4 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                2,
+            )
+        elif color_fond == ROSE_CLAIR:
+            draw.rect(
+                screen,
+                BLACK,
+                [5 * intervale + coté_carré / 2, 100, coté_carré, coté_carré],
+                2,
+            )
 
-    if (coord[1] <= 300 + coté_carré / 2 + ecart):
-        if (coord[1] >= 300 + coté_carré / 2 - ecart):
+    if coord[1] <= 300 + coté_carré / 2 + ecart:
+        if coord[1] >= 300 + coté_carré / 2 - ecart:
             for i in range(1, 6):
-                if (coord[0] <= i * intervale + coté_carré + ecart):
-                    if (coord[0] >= i * intervale + coté_carré - ecart) :
-                        draw.rect(screen, WHITE, [i * intervale + coté_carré / 2,
-                                                  300, coté_carré, coté_carré], 2)
+                if coord[0] <= i * intervale + coté_carré + ecart:
+                    if coord[0] >= i * intervale + coté_carré - ecart:
+                        draw.rect(
+                            screen,
+                            WHITE,
+                            [
+                                i * intervale + coté_carré / 2,
+                                300,
+                                coté_carré,
+                                coté_carré,
+                            ],
+                            2,
+                        )
                         num_col = i
-            if num_col != 1 :
-                draw.rect(screen, VERT, [intervale + coté_carré / 2,
-                                         300, coté_carré, coté_carré], 0)
-            if num_col != 2 :
-                draw.rect(screen, BLEU_JOLI, [2 * intervale + coté_carré / 2,
-                                              300, coté_carré, coté_carré], 0)
-            if num_col != 3 :
-                draw.rect(screen, GRAY, [3 * intervale + coté_carré / 2,
-                                         300, coté_carré, coté_carré], 0)
-            if num_col != 4 :
-                draw.rect(screen, bgColor, [4 * intervale + coté_carré / 2,
-                                            300, coté_carré, coté_carré], 0)
-            if num_col != 5 :
-                draw.rect(screen, PINK2, [5 * intervale + coté_carré / 2,
-                                          300, coté_carré, coté_carré], 0)
+            if num_col != 1:
+                draw.rect(
+                    screen,
+                    VERT,
+                    [intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    0,
+                )
+            if num_col != 2:
+                draw.rect(
+                    screen,
+                    BLEU_JOLI,
+                    [2 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    0,
+                )
+            if num_col != 3:
+                draw.rect(
+                    screen,
+                    GRAY,
+                    [3 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    0,
+                )
+            if num_col != 4:
+                draw.rect(
+                    screen,
+                    bgColor,
+                    [4 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    0,
+                )
+            if num_col != 5:
+                draw.rect(
+                    screen,
+                    PINK2,
+                    [5 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    0,
+                )
 
-    elif (coord[1] <= 400 + coté_carré / 2 + ecart
-          and coord[1] >= 400 + coté_carré / 2 - ecart):
+    elif (
+        coord[1] <= 400 + coté_carré / 2 + ecart
+        and coord[1] >= 400 + coté_carré / 2 - ecart
+    ):
         for i in range(1, 6):
-            if (coord[0] <= i * intervale + coté_carré + ecart):
-                if (coord[0] >= i * intervale + coté_carré - ecart) :
-                    draw.rect(screen, WHITE, [i * intervale + coté_carré / 2,
-                                              400, coté_carré, coté_carré], 2)
+            if coord[0] <= i * intervale + coté_carré + ecart:
+                if coord[0] >= i * intervale + coté_carré - ecart:
+                    draw.rect(
+                        screen,
+                        WHITE,
+                        [i * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                        2,
+                    )
                     num_col = i + 5
-        if num_col != 6 :
-            draw.rect(screen, ROSE_FONCE, [intervale + coté_carré / 2,
-                                           400, coté_carré, coté_carré], 0)
-        if num_col != 7 :
-            draw.rect(screen, VIOLET_FONCE, [2 * intervale + coté_carré / 2,
-                                             400, coté_carré, coté_carré], 0)
-        if num_col != 8 :
-            draw.rect(screen, ROSE_POUDREE, [3 * intervale + coté_carré / 2,
-                                             400, coté_carré, coté_carré], 0)
-        if num_col != 9 :
-            draw.rect(screen, BLEU, [4 * intervale + coté_carré / 2,
-                                     400, coté_carré, coté_carré], 0)
-        if num_col != 10 :
-            draw.rect(screen, BLEU_FONCE, [5 * intervale + coté_carré / 2,
-                                           400, coté_carré, coté_carré], 0)
+        if num_col != 6:
+            draw.rect(
+                screen,
+                ROSE_FONCE,
+                [intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 7:
+            draw.rect(
+                screen,
+                VIOLET_FONCE,
+                [2 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 8:
+            draw.rect(
+                screen,
+                ROSE_POUDREE,
+                [3 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 9:
+            draw.rect(
+                screen,
+                BLEU,
+                [4 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 10:
+            draw.rect(
+                screen,
+                BLEU_FONCE,
+                [5 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                0,
+            )
 
-    elif (coord[1] <= 500 + coté_carré / 2 + ecart
-          and coord[1] >= 500 + coté_carré / 2 - ecart):
+    elif (
+        coord[1] <= 500 + coté_carré / 2 + ecart
+        and coord[1] >= 500 + coté_carré / 2 - ecart
+    ):
         for i in range(1, 6):
-            if (coord[0] <= i * intervale + coté_carré + ecart):
-                if (coord[0] >= i * intervale + coté_carré - ecart) :
-                    draw.rect(screen, WHITE, [i * intervale + coté_carré / 2,
-                                              500, coté_carré, coté_carré], 2)
+            if coord[0] <= i * intervale + coté_carré + ecart:
+                if coord[0] >= i * intervale + coté_carré - ecart:
+                    draw.rect(
+                        screen,
+                        WHITE,
+                        [i * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                        2,
+                    )
                     num_col = i + 10
-        if num_col != 11 :
-            draw.rect(screen, JAUNE, [intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 0)
-        if num_col != 12 :
-            draw.rect(screen, ORANGE, [2 * intervale + coté_carré / 2,
-                                       500, coté_carré, coté_carré], 0)
-        if num_col != 13 :
-            draw.rect(screen, ROUGE, [3 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 0)
-        if num_col != 14 :
-            draw.rect(screen, MARRON, [4 * intervale + coté_carré / 2,
-                                       500, coté_carré, coté_carré], 0)
-        if num_col != 15 :
-            draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 0)
+        if num_col != 11:
+            draw.rect(
+                screen,
+                JAUNE,
+                [intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 12:
+            draw.rect(
+                screen,
+                ORANGE,
+                [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 13:
+            draw.rect(
+                screen,
+                ROUGE,
+                [3 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 14:
+            draw.rect(
+                screen,
+                MARRON,
+                [4 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                0,
+            )
+        if num_col != 15:
+            draw.rect(
+                screen,
+                BLACK,
+                [5 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                0,
+            )
 
-    else :
-        draw.rect(screen, VERT, [intervale + coté_carré / 2,
-                                 300, coté_carré, coté_carré], 0)
-        draw.rect(screen, BLEU_JOLI, [2 * intervale + coté_carré / 2,
-                                      300, coté_carré, coté_carré], 0)
-        draw.rect(screen, GRAY, [3 * intervale + coté_carré / 2,
-                                 300, coté_carré, coté_carré], 0)
-        draw.rect(screen, bgColor, [4 * intervale + coté_carré / 2,
-                                    300, coté_carré, coté_carré], 0)
-        draw.rect(screen, PINK2, [5 * intervale + coté_carré / 2,
-                                  300, coté_carré, coté_carré], 0)
+    else:
+        draw.rect(
+            screen, VERT, [intervale + coté_carré / 2, 300, coté_carré, coté_carré], 0
+        )
+        draw.rect(
+            screen,
+            BLEU_JOLI,
+            [2 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            GRAY,
+            [3 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            bgColor,
+            [4 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            PINK2,
+            [5 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+            0,
+        )
 
-        draw.rect(screen, ROSE_FONCE, [intervale + coté_carré / 2,
-                                       400, coté_carré, coté_carré], 0)
-        draw.rect(screen, VIOLET_FONCE, [2 * intervale + coté_carré / 2,
-                                         400, coté_carré, coté_carré], 0)
-        draw.rect(screen, ROSE_POUDREE, [3 * intervale + coté_carré / 2,
-                                         400, coté_carré, coté_carré], 0)
-        draw.rect(screen, BLEU, [4 * intervale + coté_carré / 2,
-                                 400, coté_carré, coté_carré], 0)
-        draw.rect(screen, BLEU_FONCE, [5 * intervale + coté_carré / 2,
-                                       400, coté_carré, coté_carré], 0)
+        draw.rect(
+            screen,
+            ROSE_FONCE,
+            [intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            VIOLET_FONCE,
+            [2 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            ROSE_POUDREE,
+            [3 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            BLEU,
+            [4 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            BLEU_FONCE,
+            [5 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+            0,
+        )
 
-        draw.rect(screen, JAUNE, [intervale + coté_carré / 2,
-                                  500, coté_carré, coté_carré], 0)
-        draw.rect(screen, ORANGE, [2 * intervale + coté_carré / 2,
-                                   500, coté_carré, coté_carré], 0)
-        draw.rect(screen, ROUGE, [3 * intervale + coté_carré / 2,
-                                  500, coté_carré, coté_carré], 0)
-        draw.rect(screen, MARRON, [4 * intervale + coté_carré / 2,
-                                   500, coté_carré, coté_carré], 0)
-        draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                  500, coté_carré, coté_carré], 0)
+        draw.rect(
+            screen, JAUNE, [intervale + coté_carré / 2, 500, coté_carré, coté_carré], 0
+        )
+        draw.rect(
+            screen,
+            ORANGE,
+            [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            ROUGE,
+            [3 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            MARRON,
+            [4 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+            0,
+        )
+        draw.rect(
+            screen,
+            BLACK,
+            [5 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+            0,
+        )
 
-    if choix_color_1 != -1 :
+    if choix_color_1 != -1:
         if choix_color_1 == 1:
-            draw.rect(screen, WHITE, [1 * intervale + coté_carré / 2,
-                                      300, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [1 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 1:
-                draw.rect(screen, BLACK, [1 * intervale + coté_carré / 2,
-                                          300, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [1 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 2:
-            draw.rect(screen, WHITE, [2 * intervale + coté_carré / 2,
-                                      300, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [2 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 2:
-                draw.rect(screen, BLACK, [2 * intervale + coté_carré / 2,
-                                          300, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [2 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 3:
-            draw.rect(screen, WHITE, [3 * intervale + coté_carré / 2,
-                                      300, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [3 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 3:
-                draw.rect(screen, BLACK, [3 * intervale + coté_carré / 2,
-                                          300, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [3 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 4:
-            draw.rect(screen, WHITE, [4 * intervale + coté_carré / 2,
-                                      300, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [4 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 4:
-                draw.rect(screen, BLACK, [4 * intervale + coté_carré / 2,
-                                          300, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [4 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 5:
-            draw.rect(screen, WHITE, [5 * intervale + coté_carré / 2,
-                                      300, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [5 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 5:
-                draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                          300, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [5 * intervale + coté_carré / 2, 300, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 6:
-            draw.rect(screen, WHITE, [1 * intervale + coté_carré / 2,
-                                      400, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [1 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 6:
-                draw.rect(screen, BLACK, [1 * intervale + coté_carré / 2,
-                                          400, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [1 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 7:
-            draw.rect(screen, WHITE, [2 * intervale + coté_carré / 2,
-                                      400, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [2 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 7:
-                draw.rect(screen, BLACK, [2 * intervale + coté_carré / 2,
-                                          400, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [2 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 8:
-            draw.rect(screen, WHITE, [3 * intervale + coté_carré / 2,
-                                      400, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [3 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 8:
-                draw.rect(screen, BLACK, [3 * intervale + coté_carré / 2,
-                                          400, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [3 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 9:
-            draw.rect(screen, WHITE, [4 * intervale + coté_carré / 2,
-                                      400, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [4 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 9:
-                draw.rect(screen, BLACK, [4 * intervale + coté_carré / 2,
-                                          400, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [4 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 10:
-            draw.rect(screen, WHITE, [5 * intervale + coté_carré / 2,
-                                      400, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [5 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 10:
-                draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                          400, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [5 * intervale + coté_carré / 2, 400, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 11:
-            draw.rect(screen, WHITE, [1 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [1 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 11:
-                draw.rect(screen, BLACK, [2 * intervale + coté_carré / 2,
-                                          500, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 12:
-            draw.rect(screen, WHITE, [2 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 12:
-                draw.rect(screen, BLACK, [2 * intervale + coté_carré / 2,
-                                          500, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [2 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 13:
-            draw.rect(screen, WHITE, [3 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [3 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 14:
-                draw.rect(screen, BLACK, [14 * intervale + coté_carré / 2,
-                                          500, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [14 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 14:
-            draw.rect(screen, WHITE, [4 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [4 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 14:
-                draw.rect(screen, BLACK, [4 * intervale + coté_carré / 2,
-                                          500, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [4 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                    2,
+                )
         if choix_color_1 == 15:
-            draw.rect(screen, WHITE, [5 * intervale + coté_carré / 2,
-                                      500, coté_carré, coté_carré], 2)
+            draw.rect(
+                screen,
+                WHITE,
+                [5 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                2,
+            )
             if num_col == 15:
-                draw.rect(screen, BLACK, [5 * intervale + coté_carré / 2,
-                                          500, coté_carré, coté_carré], 2)
+                draw.rect(
+                    screen,
+                    BLACK,
+                    [5 * intervale + coté_carré / 2, 500, coté_carré, coté_carré],
+                    2,
+                )
 
     display.flip()
 
@@ -1113,55 +1563,58 @@ def clic_menu_couleur(coord, num_color_1, num_color_2):
     num = -1
     num_col = -1
 
-    if (coord[1] <= 100 + coté_carré / 2 + ecart):
-        if (coord[1] >= 100 + coté_carré / 2 - ecart) :
+    if coord[1] <= 100 + coté_carré / 2 + ecart:
+        if coord[1] >= 100 + coté_carré / 2 - ecart:
             for i in range(1, 6):
-                if (coord[0] <= i * intervale + coté_carré + ecart):
-                    if (coord[0] >= i * intervale + coté_carré - ecart) :
+                if coord[0] <= i * intervale + coté_carré + ecart:
+                    if coord[0] >= i * intervale + coté_carré - ecart:
                         num = i
 
-    if (coord[1] <= 300 + coté_carré / 2 + ecart):
-        if (coord[1] >= 300 + coté_carré / 2 - ecart):
+    if coord[1] <= 300 + coté_carré / 2 + ecart:
+        if coord[1] >= 300 + coté_carré / 2 - ecart:
             for i in range(1, 6):
-                if (coord[0] <= i * intervale + coté_carré + ecart):
-                    if (coord[0] >= i * intervale + coté_carré - ecart) :
+                if coord[0] <= i * intervale + coté_carré + ecart:
+                    if coord[0] >= i * intervale + coté_carré - ecart:
                         num_col = i
 
-    elif (coord[1] <= 400 + coté_carré / 2 + ecart
-          and coord[1] >= 400 + coté_carré / 2 - ecart):
+    elif (
+        coord[1] <= 400 + coté_carré / 2 + ecart
+        and coord[1] >= 400 + coté_carré / 2 - ecart
+    ):
         for i in range(1, 6):
-            if (coord[0] <= i * intervale + coté_carré + ecart):
-                if (coord[0] >= i * intervale + coté_carré - ecart) :
+            if coord[0] <= i * intervale + coté_carré + ecart:
+                if coord[0] >= i * intervale + coté_carré - ecart:
                     num_col = i + 5
 
-    elif (coord[1] <= 500 + coté_carré / 2 + ecart):
-        if (coord[1] >= 500 + coté_carré / 2 - ecart):
+    elif coord[1] <= 500 + coté_carré / 2 + ecart:
+        if coord[1] >= 500 + coté_carré / 2 - ecart:
             for i in range(1, 6):
-                if (coord[0] <= i * intervale + coté_carré + ecart):
-                    if (coord[0] >= i * intervale + coté_carré - ecart) :
+                if coord[0] <= i * intervale + coté_carré + ecart:
+                    if coord[0] >= i * intervale + coté_carré - ecart:
                         num_col = i + 10
 
-    if num_color_1 == -1 :
+    if num_color_1 == -1:
         num_color_1 = num_col
-    elif num_color_1 == num_col :
+    elif num_color_1 == num_col:
         num_color_1 = -1
-    else :
+    else:
         num_color_2 = num_col
     return (num, num_color_1, num_color_2)
 
 
-def attribue_color(color_fond, color_1, color_2, num_color_fond,
-                   num_color_1, num_color_2):
+def attribue_color(
+    color_fond, color_1, color_2, num_color_fond, num_color_1, num_color_2
+):
     """
     entrée : la couleur du fond, la couleur du j1 et j2,
     leur numéros respectifs choisis
     effet : modifie (color_fond, color_1, color_2) en fonction des nouveaux choix
     sortie : renvoie (color_fond, color_1, color_2) modifié
     """
-    if num_color_fond != -1 :
+    if num_color_fond != -1:
         if num_color_fond == 1:
             color_fond = C1_BLUE
-        elif num_color_fond == 2 :
+        elif num_color_fond == 2:
             color_fond = PINK
         elif num_color_fond == 3:
             color_fond = GRIS_CLAIR
@@ -1170,10 +1623,10 @@ def attribue_color(color_fond, color_1, color_2, num_color_fond,
         elif num_color_fond == 5:
             color_fond = ROSE_CLAIR
 
-    if num_color_1 != -1 :
+    if num_color_1 != -1:
         if num_color_1 == 1:
             color_1 = VERT
-        elif num_color_1 == 2 :
+        elif num_color_1 == 2:
             color_1 = BLEU_JOLI
         elif num_color_1 == 3:
             color_1 = GRAY
@@ -1202,10 +1655,10 @@ def attribue_color(color_fond, color_1, color_2, num_color_fond,
         elif num_color_1 == 15:
             color_1 = BLACK
 
-    if num_color_2 != -1 :
+    if num_color_2 != -1:
         if num_color_2 == 1:
             color_2 = VERT
-        elif num_color_2 == 2 :
+        elif num_color_2 == 2:
             color_2 = BLEU_JOLI
         elif num_color_2 == 3:
             color_2 = GRAY

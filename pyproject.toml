@@ -15,6 +15,11 @@ pygame = "^2.6.1"
 flake8 = "^6.0"  # Ajout de Flake8 pour l'analyse statique du code
 pre-commit = "^3.0"  # Ajout de pre-commit pour automatiser l'exécution de Flake8 avant chaque commit
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.10.0"
+pylint = "^3.3.3"
+isort = "^5.13.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

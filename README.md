@@ -10,8 +10,8 @@ Ce fichier README contient une présentation complète du projet **Dots and Boxe
 - L'analyse statique du code avec Flake8 et pre-commit.
 - Le système de logging du projet.
 - Les tests unitaires mis en place.
-- la façon dont le code est documenté
-- la licence
+- La façon dont le code est documenté.
+- La licence.
 
 Tout ce qui est nécessaire pour comprendre, installer et utiliser le projet y est détaillé.
 
@@ -48,15 +48,15 @@ Un joueur marque un point en complétant une case.
 
 ## Prérequis
 Avant de pouvoir exécuter ce projet, vous devez avoir installé :
-- **Python 3.11** ou une version compatible
-- **Poetry** (gestionnaire de dépendances Python)
+- **Python 3.11** ou une version compatible.
+- **Poetry** (gestionnaire de dépendances Python).
 
-## Installation et Execution
+## Installation et Exécution
 1. Clonez ce dépôt :
    ```bash
    git clone https://github.com/nashoba1er/dots-and-boxes.git
    cd dots-and-boxes
-2. installez les dépendances :
+2. Installez les dépendances :
    ```bash 
    poetry install
 3. Executez le jeu : 
