@@ -1,6 +1,5 @@
 name: CI for Dots and Boxes
 
-# Déclencher l'action à chaque push et pull request sur la branche principale
 on:
   push:
     branches:
@@ -13,55 +12,69 @@ jobs:
   # Job pour tester sur plusieurs versions de Python
   test:
     runs-on: ubuntu-latest  # Utilise un environnement Ubuntu pour exécuter les tests
-    
+
     strategy:
       matrix:
         python-version: [3.8, 3.9, 3.10]  # Teste sur plusieurs versions de Python
 
     steps:
-    # 1. Check out le code
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # 2. Installer Poetry avec pip
-    - name: Install Poetry
-      run: |
-        python -m pip install --upgrade pip  # Met à jour pip
-        python -m pip install poetry  # Installe Poetry via pip
+    # Installer Poetry
+    - name: Set up Poetry
+      uses: python-actions/setup-poetry@v2
+      with:
+        python-version: ${{ matrix.python-version }}  # Installe la version de Python de la matrice
 
-    # 3. Mettre à jour le fichier poetry.lock
-    - name: Update poetry.lock
-      run: |
-        poetry lock  # Met à jour le fichier poetry.lock
-
-    # 4. Installer les dépendances avec Poetry
+    # Installer les dépendances avec Poetry
     - name: Install dependencies
       run: |
         poetry install
 
-    # 5. Exécuter les tests unitaires
+    # Exécuter les tests unitaires
     - name: Run unit tests
       run: |
-        poetry run python -m unittest discover  # Exécuter les tests dans le répertoire "tests"
+        poetry run python -m unittest discover
 
   # Job pour l'analyse statique du code avec Flake8
   flake8:
     runs-on: ubuntu-latest  # Utilise un environnement Ubuntu
 
     steps:
-    # 1. Check out le code
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # 2. Installer Poetry et Flake8 via pip
-    - name: Install Poetry and Flake8
+    # Installer Poetry et Flake8
+    - name: Set up Poetry
+      uses: python-actions/setup-poetry@v2
+      with:
+        python-version: 3.11  # Utilise la version 3.11 pour l'analyse statique
+
+    - name: Install dependencies and Flake8
       run: |
-        python -m pip install --upgrade pip  # Met à jour pip
-        python -m pip install poetry  # Installe Poetry
         poetry install
         poetry run pip install flake8  # Installer Flake8 via Poetry
 
-    # 3. Exécuter Flake8 pour l'analyse statique du code
+    # Exécuter Flake8 pour l'analyse statique du code
     - name: Run Flake8
       run: |
         poetry run flake8 .  # Lancer Flake8 sur tout le projet
+
+  # Job pour vérifier la présence de secrets dans le code
+  git-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Git Secrets
+      run: |
+        sudo apt-get install -y git-secrets
+        git secrets --register-aws
+        git secrets --install
+
+    - name: Run Git Secrets
+      run: |
+        git secrets --scan  # Vérifier la présence de secrets dans les commits
