@@ -80,3 +80,4 @@ git-secrets:
       export TERM=xterm  # Définir la variable $TERM pour éviter les erreurs de terminal
       git secrets --scan  # Vérifier la présence de secrets dans les commits
     continue-on-error: true  # Ignorer les erreurs liées à "say" et "$TERM"
+
